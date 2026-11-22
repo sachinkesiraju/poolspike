@@ -112,8 +112,8 @@ hours on a 10-core Mac mini. Only that final champion was then tested on
 | the learned judge | 0.595 ± 0.030 (1,000 games) |
 
 Giving Poolspike 2.3× or 7× more search gave no measurable gain. Giving the
-CueCard rebuild 4× more search did not close the gap (0.550 ± 0.069, 200
-games).
+CueCard rebuild 4× more search narrowed the gap but did not close it (0.550
+± 0.031, 1,000 games).
 
 ## Repository
 
@@ -178,7 +178,7 @@ then run from `poolspike/`:
 - **Paired games.** Every seed is played twice, so each player breaks once.
   The two games share the rack and the noise stream, which cancels much of
   the luck.
-- **Held-out seeds.** Reported matches use seeds 600000–604099. Poolspike
+- **Held-out seeds.** Reported matches use seeds 600000–604599. Poolspike
   trained on seeds below 50000, and CueCard was debugged on 603000–603214. No
   reported game was seen during development.
 - **No access to the real noise.** The game draws its noise from its own

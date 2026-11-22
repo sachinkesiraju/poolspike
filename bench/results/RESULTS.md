@@ -14,11 +14,14 @@ per shot. Overlapping intervals are not a proven difference.
 | r19 | cc | icga2008 / icga | 400 | 0.590 +- 0.048 | 93.4% | 90.6% | 2.6% | 3.7% | 602000-602199 |
 | r19 | ev | icga2008 / icga | 300 | 0.600 +- 0.055 | 92.7% | 91.1% | 2.4% | 3.0% | 602000-602149 |
 | r19 | cc:4 | ours / ours | 200 | 0.550 +- 0.069 | 90.0% | 89.4% | 3.2% | 4.1% | 604000-604099 |
+| r19 | cc:4 | ours / ours | 1000 | 0.550 +- 0.031 | 91.5% | 89.9% | 2.9% | 3.7% | 604100-604599 |
 
 `cc:4` = 4x level-1/level-2 budget, 24 fully sampled variants, 12 shots to
 level 2, up to 6 representative states (CPU per game, both players: 65 s vs
-36 s with `cc`, so CueCard itself used about 2.4x more). No measurable gain
-over `cc` (0.550 +- 0.069 vs 0.583 +- 0.031). A first `cc:4` run that only
+36 s with `cc`, so CueCard itself used about 2.4x more). The 1,000-game
+confirmation on fresh seeds gives the same score with a tighter interval:
+0.550 +- 0.031 vs 0.583 +- 0.031 against `cc`. The extra search narrows the
+gap a little (the intervals just overlap) but Poolspike still wins. A first `cc:4` run that only
 raised the budget (structure capped, ~same CPU) scored 0.520 +- 0.069
 (`r19_vs_cc4_budgetonly.jsonl`).
 
@@ -56,6 +59,7 @@ python -B match.py r19 cc    --seeds 600000 600500 --out r19_vs_cc.jsonl
 python -B match.py r19 cc    --seeds 602000 602200 --noise icga2008 --rules icga --out icga_r19_vs_cc.jsonl
 python -B match.py r19 ev    --seeds 602000 602150 --noise icga2008 --rules icga --out icga_r19_vs_ev.jsonl
 python -B match.py r19 cc:4  --seeds 604000 604100 --out r19_vs_cc4.jsonl
+python -B match.py r19 cc:4  --seeds 604100 604600 --out r19_vs_cc4_1k.jsonl
 ```
 
 Per-game logs are in this folder. CueCard's build, parameters, sources and
