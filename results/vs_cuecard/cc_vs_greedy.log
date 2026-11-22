@@ -1,0 +1,5 @@
+cc vs greedy: 100 games, score 0.940 +- 0.047 (95%)
+  cc: make 88.7% (684/771), fouls 4.0% of 849 shots, scratches 24, invalid 0, agent errors 0
+  greedy: make 69.0% (209/303), fouls 16.9% of 391 shots, scratches 53, invalid 0, agent errors 0
+  ends: {'A wins: 8 legally pocketed': 92, 'A loses: 8 legally pocketed': 3, 'A loses: scratch on the 8': 2, 'A wins: 8 early': 2, 'A loses: 8 early': 1}
+  noise ours, rules ours, seeds [601500, 601550), 0 failed games, 492s wall

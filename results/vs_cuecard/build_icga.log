@@ -1,0 +1,4 @@
+corner: 1354 of 2304 entries filled from neighbours; mean p 0.562
+side: 2064 of 2880 entries filled from neighbours; mean p 0.538
+tables [icga2008] 5184 entries x 48 samples [29s]
+break [icga2008]: {'x': 0.84, 'y': 0.44530000000000003, 'v': 9.0, 'a': 0.0, 'b': 0.0, 'dphi': -0.6, 'keep': 0.87, 'spread': 0.2536666666666668, 'scratch': 0.035, 'score': 0.9207333333333334} [131s]

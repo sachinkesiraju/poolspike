@@ -1,0 +1,155 @@
+{
+"round": 20,
+"champ": "nets6/r19.npz",
+"data": [
+"../runs/v6/self1.npz",
+"../runs/v6/ev1.npz",
+"../runs/v6/self2.npz",
+"../runs/v6/ev2.npz",
+"../runs/v6/self3.npz",
+"../runs/v6/ev3.npz",
+"../runs/v6/self4.npz",
+"../runs/v6/ev4.npz",
+"../runs/v6/self5.npz",
+"../runs/v6/ev5.npz",
+"../runs/v6/self6.npz",
+"../runs/v6/ev6.npz",
+"../runs/v6/self7.npz",
+"../runs/v6/ev7.npz",
+"../runs/v6/self8.npz",
+"../runs/v6/ev8.npz",
+"../runs/v6/self9.npz",
+"../runs/v6/ev9.npz",
+"../runs/v6/self10.npz",
+"../runs/v6/ev10.npz",
+"../runs/v6/self11.npz",
+"../runs/v6/ev11.npz",
+"../runs/v6/self12.npz",
+"../runs/v6/ev12.npz",
+"../runs/v6/self13.npz",
+"../runs/v6/ev13.npz",
+"../runs/v6/self14.npz",
+"../runs/v6/ev14.npz",
+"../runs/v6/self15.npz",
+"../runs/v6/ev15.npz",
+"../runs/v6/self16.npz",
+"../runs/v6/ev16.npz",
+"../runs/v6/self17.npz",
+"../runs/v6/ev17.npz",
+"../runs/v6/self18.npz",
+"../runs/v6/ev18.npz",
+"../runs/v6/self19.npz",
+"../runs/v6/ev19.npz",
+"../runs/v6/self20.npz",
+"../runs/v6/ev20.npz"
+],
+"seed": 47900,
+"history": [
+{
+"round": 1,
+"gate": 0.523,
+"champ": "nets6/r1.npz"
+},
+{
+"round": 2,
+"gate": 0.487,
+"champ": "nets6/r1.npz"
+},
+{
+"round": 3,
+"gate": 0.507,
+"champ": "nets6/r3.npz",
+"ev": 0.527
+},
+{
+"round": 4,
+"gate": 0.47,
+"champ": "nets6/r3.npz"
+},
+{
+"round": 5,
+"gate": 0.537,
+"champ": "nets6/r5.npz"
+},
+{
+"round": 6,
+"gate": 0.513,
+"champ": "nets6/r6.npz",
+"ev": 0.58
+},
+{
+"round": 7,
+"gate": 0.51,
+"champ": "nets6/r7.npz"
+},
+{
+"round": 8,
+"gate": 0.533,
+"champ": "nets6/r8.npz"
+},
+{
+"round": 9,
+"gate": 0.467,
+"champ": "nets6/r8.npz",
+"ev": 0.533
+},
+{
+"round": 10,
+"gate": 0.553,
+"champ": "nets6/r10.npz"
+},
+{
+"round": 11,
+"gate": 0.527,
+"champ": "nets6/r11.npz"
+},
+{
+"round": 12,
+"gate": 0.52,
+"champ": "nets6/r12.npz",
+"ev": 0.587
+},
+{
+"round": 13,
+"gate": 0.513,
+"champ": "nets6/r13.npz"
+},
+{
+"round": 14,
+"gate": 0.46,
+"champ": "nets6/r13.npz"
+},
+{
+"round": 15,
+"gate": 0.493,
+"champ": "nets6/r13.npz",
+"ev": 0.577
+},
+{
+"round": 16,
+"gate": 0.513,
+"champ": "nets6/r16.npz"
+},
+{
+"round": 17,
+"gate": 0.48,
+"champ": "nets6/r16.npz"
+},
+{
+"round": 18,
+"gate": 0.53,
+"champ": "nets6/r18.npz",
+"ev": 0.533
+},
+{
+"round": 19,
+"gate": 0.503,
+"champ": "nets6/r19.npz"
+},
+{
+"round": 20,
+"gate": 0.493,
+"champ": "nets6/r19.npz"
+}
+]
+}

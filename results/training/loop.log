@@ -1,0 +1,318 @@
+== fast aim vs old aim, same net, 200 games
+v0.npz vs v0.npz: 200 games, score 0.475 +- 0.069 [848s]
+  net: make 90.0% (980/1089), fouls 3.3%, scratches 31, invalid 0
+  opp: make 90.4% (1026/1135), fouls 2.6%, scratches 25, invalid 0
+  ends: {'L 8 legally pocketed': 104, 'W 8 legally pocketed': 90, 'W 8 early': 3, 'W scratch on the 8': 1, 'W 8 in the wrong pocket': 1, 'L 8 early': 1}
+  cpu per decision 6090 ms (includes opponent)
+=== round 1, champion nets3/v0.npz, Thu Nov  5 13:37:55 2026
+gen v0.npz vs v0.npz: 300 games, score 0.457, 3233 positions [967s]
+gen v0.npz vs ev: 100 games, score 0.460, 1157 positions [842s]
+  pass 0: dev loss 0.5746, 41 epochs
+  pass 1: dev loss 0.5799, 18 epochs
+  pass 2: dev loss 0.5834, 18 epochs
+fit: 4390 positions, 400 games [1s]; holdout loss analytic 0.6732, rescaled (slope 0.47) 0.6195, net 0.6382; gain -0.0187 +- 0.0552
+r1.npz vs v0.npz: 300 games, score 0.523 +- 0.057 [1154s]
+  net: make 90.3% (1568/1737), fouls 2.7%, scratches 38, invalid 0
+  opp: make 90.2% (1415/1568), fouls 3.4%, scratches 47, invalid 0
+  ends: {'W 8 legally pocketed': 154, 'L 8 legally pocketed': 135, 'L 8 early': 5, 'L scratch on the 8': 2, 'W scratch on the 8': 2, 'W 8 early': 1}
+  cpu per decision 5309 ms (includes opponent)
+promoted nets6/r1.npz, gate 0.523
+round 1 done in 49 min: {'round': 1, 'gate': 0.523, 'champ': 'nets6/r1.npz'}
+=== round 2, champion nets6/r1.npz, Thu Nov  5 14:27:20 2026
+gen r1.npz vs r1.npz: 300 games, score 0.513, 3332 positions [1124s]
+gen r1.npz vs ev: 100 games, score 0.510, 1110 positions [831s]
+  pass 0: dev loss 0.5777, 19 epochs
+  pass 1: dev loss 0.5722, 42 epochs
+  pass 2: dev loss 0.5715, 33 epochs
+fit: 8832 positions, 800 games [3s]; holdout loss analytic 0.6890, rescaled (slope 0.49) 0.6282, net 0.5669; gain +0.0614 +- 0.0292
+r2.npz vs r1.npz: 300 games, score 0.487 +- 0.057 [1173s]
+  net: make 90.6% (1411/1557), fouls 3.2%, scratches 41, invalid 0
+  opp: make 91.3% (1495/1638), fouls 2.8%, scratches 39, invalid 0
+  ends: {'L 8 legally pocketed': 150, 'W 8 legally pocketed': 140, 'W 8 in the wrong pocket': 3, 'W 8 early': 2, 'L 8 in the wrong pocket': 2, 'L 8 early': 1}
+  cpu per decision 5926 ms (includes opponent)
+kept nets6/r1.npz, gate 0.487
+round 2 done in 52 min: {'round': 2, 'gate': 0.487, 'champ': 'nets6/r1.npz'}
+=== round 3, champion nets6/r1.npz, Thu Nov  5 15:19:31 2026
+gen r1.npz vs r1.npz: 300 games, score 0.560, 3386 positions [1126s]
+gen r1.npz vs ev: 100 games, score 0.510, 1073 positions [792s]
+  pass 0: dev loss 0.5923, 28 epochs
+  pass 1: dev loss 0.5819, 21 epochs
+  pass 2: dev loss 0.5791, 16 epochs
+fit: 13291 positions, 1200 games [3s]; holdout loss analytic 0.6496, rescaled (slope 0.47) 0.6096, net 0.5865; gain +0.0231 +- 0.0375
+r3.npz vs r1.npz: 300 games, score 0.507 +- 0.057 [1142s]
+  net: make 92.3% (1418/1537), fouls 3.0%, scratches 46, invalid 0
+  opp: make 92.6% (1415/1528), fouls 3.2%, scratches 46, invalid 0
+  ends: {'W 8 legally pocketed': 148, 'L 8 legally pocketed': 145, 'L 8 early': 2, 'W scratch on the 8': 2, 'W 8 early': 2, 'L scratch on the 8': 1}
+  cpu per decision 5896 ms (includes opponent)
+promoted nets6/r3.npz, gate 0.507
+r3.npz vs ev: 300 games, score 0.527 +- 0.056 [2579s]
+  net: make 91.1% (1571/1724), fouls 3.7%, scratches 57, invalid 0
+  opp: make 90.9% (1343/1477), fouls 3.9%, scratches 57, invalid 0
+  ends: {'W 8 legally pocketed': 152, 'L 8 legally pocketed': 132, 'L 8 early': 7, 'W 8 early': 5, 'L scratch on the 8': 2, 'L 8 in the wrong pocket': 1}
+  cpu per decision 11321 ms (includes opponent)
+round 3 done in 94 min: {'round': 3, 'gate': 0.507, 'champ': 'nets6/r3.npz', 'ev': 0.527}
+=== round 4, champion nets6/r3.npz, Thu Nov  5 16:53:34 2026
+gen r3.npz vs r3.npz: 300 games, score 0.527, 3370 positions [1230s]
+gen r3.npz vs ev: 100 games, score 0.530, 1147 positions [823s]
+  pass 0: dev loss 0.5908, 23 epochs
+  pass 1: dev loss 0.5802, 33 epochs
+  pass 2: dev loss 0.5771, 16 epochs
+fit: 17808 positions, 1600 games [5s]; holdout loss analytic 0.6917, rescaled (slope 0.43) 0.6311, net 0.5759; gain +0.0552 +- 0.0300
+r4.npz vs r3.npz: 300 games, score 0.470 +- 0.056 [1147s]
+  net: make 89.8% (1362/1517), fouls 3.1%, scratches 40, invalid 0
+  opp: make 90.8% (1425/1569), fouls 3.4%, scratches 46, invalid 0
+  ends: {'L 8 legally pocketed': 155, 'W 8 legally pocketed': 137, 'L scratch on the 8': 3, 'W 8 early': 2, 'W scratch on the 8': 2, 'L 8 early': 1}
+  cpu per decision 5948 ms (includes opponent)
+kept nets6/r3.npz, gate 0.470
+round 4 done in 53 min: {'round': 4, 'gate': 0.47, 'champ': 'nets6/r3.npz'}
+=== round 5, champion nets6/r3.npz, Thu Nov  5 17:47:01 2026
+gen r3.npz vs r3.npz: 300 games, score 0.497, 3297 positions [1087s]
+gen r3.npz vs ev: 100 games, score 0.540, 1035 positions [782s]
+  pass 0: dev loss 0.5945, 14 epochs
+  pass 1: dev loss 0.5791, 15 epochs
+  pass 2: dev loss 0.5711, 23 epochs
+fit: 22140 positions, 2000 games [4s]; holdout loss analytic 0.6687, rescaled (slope 0.44) 0.6196, net 0.5896; gain +0.0300 +- 0.0274
+r5.npz vs r3.npz: 300 games, score 0.537 +- 0.056 [5912s]
+  net: make 91.0% (1465/1610), fouls 2.6%, scratches 37, invalid 0
+  opp: make 90.0% (1374/1526), fouls 3.0%, scratches 39, invalid 0
+  ends: {'W 8 legally pocketed': 156, 'L 8 legally pocketed': 133, 'L scratch on the 8': 4, 'W 8 early': 2, 'L 8 early': 2, 'W scratch on the 8': 2}
+  cpu per decision 5832 ms (includes opponent)
+promoted nets6/r5.npz, gate 0.537
+round 5 done in 130 min: {'round': 5, 'gate': 0.537, 'champ': 'nets6/r5.npz'}
+=== round 6, champion nets6/r5.npz, Thu Nov  5 19:56:48 2026
+gen r5.npz vs r5.npz: 300 games, score 0.513, 3243 positions [1094s]
+gen r5.npz vs ev: 100 games, score 0.540, 1080 positions [774s]
+  pass 0: dev loss 0.5831, 19 epochs
+  pass 1: dev loss 0.5722, 24 epochs
+  pass 2: dev loss 0.5685, 17 epochs
+fit: 26463 positions, 2400 games [6s]; holdout loss analytic 0.6728, rescaled (slope 0.43) 0.6197, net 0.5573; gain +0.0624 +- 0.0260
+r6.npz vs r5.npz: 300 games, score 0.513 +- 0.057 [1218s]
+  net: make 89.5% (1496/1671), fouls 3.3%, scratches 49, invalid 0
+  opp: make 89.3% (1440/1613), fouls 3.2%, scratches 44, invalid 0
+  ends: {'W 8 legally pocketed': 152, 'L 8 legally pocketed': 144, 'W 8 early': 2, 'L 8 early': 2}
+  cpu per decision 5796 ms (includes opponent)
+promoted nets6/r6.npz, gate 0.513
+r6.npz vs ev: 300 games, score 0.580 +- 0.056 [2379s]
+  net: make 90.2% (1548/1716), fouls 2.6%, scratches 45, invalid 0
+  opp: make 89.2% (1277/1432), fouls 3.7%, scratches 54, invalid 0
+  ends: {'W 8 legally pocketed': 163, 'L 8 legally pocketed': 114, 'L 8 early': 7, 'W 8 early': 6, 'W scratch on the 8': 4, 'L scratch on the 8': 4}
+  cpu per decision 11024 ms (includes opponent)
+round 6 done in 91 min: {'round': 6, 'gate': 0.513, 'champ': 'nets6/r6.npz', 'ev': 0.58}
+=== round 7, champion nets6/r6.npz, Thu Nov  5 21:27:59 2026
+gen r6.npz vs r6.npz: 300 games, score 0.513, 3235 positions [1114s]
+gen r6.npz vs ev: 100 games, score 0.600, 1128 positions [819s]
+  pass 0: dev loss 0.5874, 17 epochs
+  pass 1: dev loss 0.5777, 13 epochs
+  pass 2: dev loss 0.5730, 39 epochs
+fit: 30826 positions, 2800 games [8s]; holdout loss analytic 0.6700, rescaled (slope 0.43) 0.6186, net 0.5621; gain +0.0565 +- 0.0237
+r7.npz vs r6.npz: 300 games, score 0.510 +- 0.057 [1164s]
+  net: make 90.8% (1438/1583), fouls 2.1%, scratches 22, invalid 0
+  opp: make 91.8% (1435/1564), fouls 2.9%, scratches 31, invalid 0
+  ends: {'W 8 legally pocketed': 149, 'L 8 legally pocketed': 145, 'L 8 early': 2, 'W 8 early': 2, 'W scratch on the 8': 1, 'W 8 in the wrong pocket': 1}
+  cpu per decision 5803 ms (includes opponent)
+promoted nets6/r7.npz, gate 0.510
+round 7 done in 52 min: {'round': 7, 'gate': 0.51, 'champ': 'nets6/r7.npz'}
+=== round 8, champion nets6/r7.npz, Thu Nov  5 22:19:44 2026
+gen r7.npz vs r7.npz: 300 games, score 0.503, 3344 positions [1119s]
+gen r7.npz vs ev: 100 games, score 0.600, 1110 positions [797s]
+  pass 0: dev loss 0.5581, 13 epochs
+  pass 1: dev loss 0.5523, 32 epochs
+  pass 2: dev loss 0.5509, 41 epochs
+fit: 35280 positions, 3200 games [11s]; holdout loss analytic 0.6639, rescaled (slope 0.40) 0.6166, net 0.5717; gain +0.0449 +- 0.0200
+r8.npz vs r7.npz: 300 games, score 0.533 +- 0.056 [1198s]
+  net: make 91.6% (1487/1624), fouls 2.5%, scratches 35, invalid 0
+  opp: make 89.9% (1357/1510), fouls 2.8%, scratches 34, invalid 0
+  ends: {'W 8 legally pocketed': 157, 'L 8 legally pocketed': 132, 'L 8 early': 6, 'W 8 early': 3, 'L scratch on the 8': 2}
+  cpu per decision 5798 ms (includes opponent)
+promoted nets6/r8.npz, gate 0.533
+round 8 done in 52 min: {'round': 8, 'gate': 0.533, 'champ': 'nets6/r8.npz'}
+=== round 9, champion nets6/r8.npz, Thu Nov  5 23:11:50 2026
+gen r8.npz vs r8.npz: 300 games, score 0.480, 3144 positions [1084s]
+gen r8.npz vs ev: 100 games, score 0.560, 1145 positions [823s]
+  pass 0: dev loss 0.5772, 19 epochs
+  pass 1: dev loss 0.5618, 47 epochs
+  pass 2: dev loss 0.5597, 25 epochs
+fit: 39569 positions, 3600 games [13s]; holdout loss analytic 0.6524, rescaled (slope 0.43) 0.6105, net 0.5640; gain +0.0465 +- 0.0206
+r9.npz vs r8.npz: 300 games, score 0.467 +- 0.056 [9256s]
+  net: make 91.3% (1307/1432), fouls 3.2%, scratches 40, invalid 0
+  opp: make 92.3% (1407/1524), fouls 2.7%, scratches 39, invalid 0
+  ends: {'L 8 legally pocketed': 153, 'W 8 legally pocketed': 131, 'L 8 early': 5, 'W 8 early': 5, 'W scratch on the 8': 4, 'L scratch on the 8': 2}
+  cpu per decision 5978 ms (includes opponent)
+kept nets6/r8.npz, gate 0.467
+r8.npz vs ev: 300 games, score 0.533 +- 0.056 [2477s]
+  net: make 90.1% (1536/1704), fouls 2.4%, scratches 32, invalid 0
+  opp: make 90.3% (1371/1519), fouls 3.5%, scratches 45, invalid 0
+  ends: {'W 8 legally pocketed': 154, 'L 8 legally pocketed': 132, 'L 8 early': 5, 'W 8 early': 4, 'L scratch on the 8': 3, 'W scratch on the 8': 2}
+  cpu per decision 11495 ms (includes opponent)
+round 9 done in 228 min: {'round': 9, 'gate': 0.467, 'champ': 'nets6/r8.npz', 'ev': 0.533}
+=== round 10, champion nets6/r8.npz, Fri Nov  6 02:59:23 2026
+gen r8.npz vs r8.npz: 300 games, score 0.497, 3271 positions [1078s]
+gen r8.npz vs ev: 100 games, score 0.490, 1056 positions [801s]
+  pass 0: dev loss 0.5682, 19 epochs
+  pass 1: dev loss 0.5569, 35 epochs
+  pass 2: dev loss 0.5538, 36 epochs
+fit: 43896 positions, 4000 games [15s]; holdout loss analytic 0.6709, rescaled (slope 0.43) 0.6184, net 0.5578; gain +0.0606 +- 0.0204
+r10.npz vs r8.npz: 300 games, score 0.553 +- 0.056 [1135s]
+  net: make 92.3% (1454/1576), fouls 3.0%, scratches 40, invalid 0
+  opp: make 91.2% (1381/1515), fouls 2.8%, scratches 33, invalid 0
+  ends: {'W 8 legally pocketed': 163, 'L 8 legally pocketed': 130, 'L 8 early': 3, 'W scratch on the 8': 1, 'L scratch on the 8': 1, 'W wrong ball first (6)': 1}
+  cpu per decision 5701 ms (includes opponent)
+promoted nets6/r10.npz, gate 0.553
+round 10 done in 50 min: {'round': 10, 'gate': 0.553, 'champ': 'nets6/r10.npz'}
+=== round 11, champion nets6/r10.npz, Fri Nov  6 03:49:52 2026
+gen r10.npz vs r10.npz: 300 games, score 0.533, 3225 positions [1075s]
+gen r10.npz vs ev: 100 games, score 0.540, 1111 positions [826s]
+  pass 0: dev loss 0.5664, 21 epochs
+  pass 1: dev loss 0.5547, 36 epochs
+  pass 2: dev loss 0.5518, 15 epochs
+fit: 48232 positions, 4400 games [13s]; holdout loss analytic 0.6719, rescaled (slope 0.42) 0.6181, net 0.5608; gain +0.0573 +- 0.0196
+r11.npz vs r10.npz: 300 games, score 0.527 +- 0.056 [1143s]
+  net: make 91.5% (1437/1571), fouls 2.7%, scratches 34, invalid 0
+  opp: make 91.2% (1368/1500), fouls 2.7%, scratches 32, invalid 0
+  ends: {'W 8 legally pocketed': 156, 'L 8 legally pocketed': 140, 'W 8 early': 2, 'L 8 early': 1, 'L scratch on the 8': 1}
+  cpu per decision 5715 ms (includes opponent)
+promoted nets6/r11.npz, gate 0.527
+round 11 done in 51 min: {'round': 11, 'gate': 0.527, 'champ': 'nets6/r11.npz'}
+=== round 12, champion nets6/r11.npz, Fri Nov  6 04:40:50 2026
+gen r11.npz vs r11.npz: 300 games, score 0.457, 3140 positions [1087s]
+gen r11.npz vs ev: 100 games, score 0.520, 1098 positions [795s]
+  pass 0: dev loss 0.5644, 16 epochs
+  pass 1: dev loss 0.5530, 22 epochs
+  pass 2: dev loss 0.5513, 31 epochs
+fit: 52470 positions, 4800 games [13s]; holdout loss analytic 0.6748, rescaled (slope 0.43) 0.6220, net 0.5778; gain +0.0443 +- 0.0218
+r12.npz vs r11.npz: 300 games, score 0.520 +- 0.057 [1207s]
+  net: make 89.7% (1499/1672), fouls 2.9%, scratches 41, invalid 0
+  opp: make 88.9% (1417/1594), fouls 3.1%, scratches 40, invalid 0
+  ends: {'W 8 legally pocketed': 151, 'L 8 legally pocketed': 138, 'W 8 early': 4, 'L 8 early': 3, 'L scratch on the 8': 3, 'W scratch on the 8': 1}
+  cpu per decision 5690 ms (includes opponent)
+promoted nets6/r12.npz, gate 0.520
+r12.npz vs ev: 300 games, score 0.587 +- 0.056 [2510s]
+  net: make 90.2% (1488/1650), fouls 2.9%, scratches 41, invalid 0
+  opp: make 90.6% (1332/1470), fouls 4.2%, scratches 52, invalid 0
+  ends: {'W 8 legally pocketed': 167, 'L 8 legally pocketed': 120, 'W 8 early': 4, 'L 8 early': 4, 'W scratch on the 8': 3, 'W 8 in the wrong pocket': 1}
+  cpu per decision 12073 ms (includes opponent)
+round 12 done in 94 min: {'round': 12, 'gate': 0.52, 'champ': 'nets6/r12.npz', 'ev': 0.587}
+=== round 13, champion nets6/r12.npz, Fri Nov  6 06:14:23 2026
+gen r12.npz vs r12.npz: 300 games, score 0.483, 3223 positions [1116s]
+gen r12.npz vs ev: 100 games, score 0.560, 1119 positions [822s]
+  pass 0: dev loss 0.5693, 13 epochs
+  pass 1: dev loss 0.5657, 19 epochs
+  pass 2: dev loss 0.5653, 15 epochs
+fit: 56812 positions, 5200 games [10s]; holdout loss analytic 0.6497, rescaled (slope 0.42) 0.6045, net 0.5419; gain +0.0626 +- 0.0172
+r13.npz vs r12.npz: 300 games, score 0.513 +- 0.057 [1193s]
+  net: make 90.0% (1407/1564), fouls 2.5%, scratches 37, invalid 0
+  opp: make 90.0% (1400/1556), fouls 2.5%, scratches 30, invalid 0
+  ends: {'W 8 legally pocketed': 150, 'L 8 legally pocketed': 144, 'W 8 early': 4, 'L 8 early': 2}
+  cpu per decision 5938 ms (includes opponent)
+promoted nets6/r13.npz, gate 0.513
+round 13 done in 52 min: {'round': 13, 'gate': 0.513, 'champ': 'nets6/r13.npz'}
+=== round 14, champion nets6/r13.npz, Fri Nov  6 07:06:45 2026
+gen r13.npz vs r13.npz: 300 games, score 0.507, 3187 positions [1093s]
+gen r13.npz vs ev: 100 games, score 0.500, 1127 positions [860s]
+  pass 0: dev loss 0.5636, 15 epochs
+  pass 1: dev loss 0.5582, 24 epochs
+  pass 2: dev loss 0.5575, 13 epochs
+fit: 61126 positions, 5600 games [12s]; holdout loss analytic 0.6522, rescaled (slope 0.42) 0.6082, net 0.5636; gain +0.0446 +- 0.0177
+r14.npz vs r13.npz: 300 games, score 0.460 +- 0.056 [1161s]
+  net: make 90.7% (1390/1533), fouls 3.6%, scratches 38, invalid 0
+  opp: make 91.3% (1463/1603), fouls 2.6%, scratches 40, invalid 0
+  ends: {'L 8 legally pocketed': 159, 'W 8 legally pocketed': 135, 'L 8 early': 3, 'W 8 early': 2, 'W scratch on the 8': 1}
+  cpu per decision 5946 ms (includes opponent)
+kept nets6/r13.npz, gate 0.460
+round 14 done in 52 min: {'round': 14, 'gate': 0.46, 'champ': 'nets6/r13.npz'}
+=== round 15, champion nets6/r13.npz, Fri Nov  6 07:58:51 2026
+gen r13.npz vs r13.npz: 300 games, score 0.510, 3219 positions [1072s]
+gen r13.npz vs ev: 100 games, score 0.540, 1067 positions [774s]
+  pass 0: dev loss 0.5709, 14 epochs
+  pass 1: dev loss 0.5619, 17 epochs
+  pass 2: dev loss 0.5591, 17 epochs
+fit: 65412 positions, 6000 games [12s]; holdout loss analytic 0.6403, rescaled (slope 0.43) 0.6017, net 0.5512; gain +0.0505 +- 0.0174
+r15.npz vs r13.npz: 300 games, score 0.493 +- 0.057 [1180s]
+  net: make 90.0% (1391/1546), fouls 2.8%, scratches 38, invalid 0
+  opp: make 90.3% (1417/1570), fouls 2.4%, scratches 32, invalid 0
+  ends: {'L 8 legally pocketed': 148, 'W 8 legally pocketed': 144, 'W 8 early': 4, 'L 8 early': 3, 'L scratch on the 8': 1}
+  cpu per decision 5946 ms (includes opponent)
+kept nets6/r13.npz, gate 0.493
+r13.npz vs ev: 300 games, score 0.577 +- 0.056 [2404s]
+  net: make 91.1% (1575/1728), fouls 2.3%, scratches 39, invalid 0
+  opp: make 90.7% (1340/1478), fouls 3.7%, scratches 54, invalid 0
+  ends: {'W 8 legally pocketed': 171, 'L 8 legally pocketed': 121, 'L 8 early': 6, 'W scratch on the 8': 2}
+  cpu per decision 11012 ms (includes opponent)
+round 15 done in 91 min: {'round': 15, 'gate': 0.493, 'champ': 'nets6/r13.npz', 'ev': 0.577}
+=== round 16, champion nets6/r13.npz, Fri Nov  6 09:29:34 2026
+gen r13.npz vs r13.npz: 300 games, score 0.547, 3091 positions [1092s]
+gen r13.npz vs ev: 100 games, score 0.590, 1132 positions [848s]
+  pass 0: dev loss 0.5700, 21 epochs
+  pass 1: dev loss 0.5618, 15 epochs
+  pass 2: dev loss 0.5602, 16 epochs
+fit: 69635 positions, 6400 games [14s]; holdout loss analytic 0.6345, rescaled (slope 0.42) 0.5993, net 0.5397; gain +0.0596 +- 0.0153
+r16.npz vs r13.npz: 300 games, score 0.513 +- 0.057 [1165s]
+  net: make 91.0% (1437/1579), fouls 3.6%, scratches 50, invalid 0
+  opp: make 90.9% (1400/1540), fouls 3.6%, scratches 49, invalid 0
+  ends: {'W 8 legally pocketed': 148, 'L 8 legally pocketed': 141, 'W 8 early': 5, 'L 8 early': 3, 'L scratch on the 8': 2, 'W scratch on the 8': 1}
+  cpu per decision 5715 ms (includes opponent)
+promoted nets6/r16.npz, gate 0.513
+round 16 done in 52 min: {'round': 16, 'gate': 0.513, 'champ': 'nets6/r16.npz'}
+=== round 17, champion nets6/r16.npz, Fri Nov  6 10:21:33 2026
+gen r16.npz vs r16.npz: 300 games, score 0.500, 3231 positions [1083s]
+gen r16.npz vs ev: 100 games, score 0.650, 1083 positions [826s]
+  pass 0: dev loss 0.5730, 14 epochs
+  pass 1: dev loss 0.5679, 13 epochs
+  pass 2: dev loss 0.5661, 24 epochs
+fit: 73949 positions, 6800 games [14s]; holdout loss analytic 0.6488, rescaled (slope 0.42) 0.6078, net 0.5559; gain +0.0519 +- 0.0148
+r17.npz vs r16.npz: 300 games, score 0.480 +- 0.057 [1229s]
+  net: make 89.6% (1397/1560), fouls 3.6%, scratches 49, invalid 0
+  opp: make 90.2% (1457/1616), fouls 3.1%, scratches 47, invalid 0
+  ends: {'L 8 legally pocketed': 150, 'W 8 legally pocketed': 140, 'W scratch on the 8': 3, 'L scratch on the 8': 3, 'L 8 in the wrong pocket': 2, 'L 8 early': 1}
+  cpu per decision 6149 ms (includes opponent)
+kept nets6/r16.npz, gate 0.480
+round 17 done in 53 min: {'round': 17, 'gate': 0.48, 'champ': 'nets6/r16.npz'}
+=== round 18, champion nets6/r16.npz, Fri Nov  6 11:14:06 2026
+gen r16.npz vs r16.npz: 300 games, score 0.530, 3150 positions [1131s]
+gen r16.npz vs ev: 100 games, score 0.570, 1097 positions [835s]
+  pass 0: dev loss 0.5751, 16 epochs
+  pass 1: dev loss 0.5670, 26 epochs
+  pass 2: dev loss 0.5648, 14 epochs
+fit: 78196 positions, 7200 games [17s]; holdout loss analytic 0.6461, rescaled (slope 0.43) 0.6046, net 0.5578; gain +0.0468 +- 0.0143
+r18.npz vs r16.npz: 300 games, score 0.530 +- 0.056 [1210s]
+  net: make 91.1% (1439/1579), fouls 2.6%, scratches 40, invalid 0
+  opp: make 90.5% (1380/1525), fouls 2.9%, scratches 42, invalid 0
+  ends: {'W 8 legally pocketed': 151, 'L 8 legally pocketed': 135, 'W 8 early': 5, 'L 8 early': 3, 'L scratch on the 8': 3, 'W scratch on the 8': 2}
+  cpu per decision 5971 ms (includes opponent)
+promoted nets6/r18.npz, gate 0.530
+r18.npz vs ev: 300 games, score 0.533 +- 0.056 [2547s]
+  net: make 88.9% (1525/1716), fouls 3.0%, scratches 47, invalid 0
+  opp: make 90.2% (1413/1567), fouls 3.8%, scratches 48, invalid 0
+  ends: {'W 8 legally pocketed': 154, 'L 8 legally pocketed': 133, 'L scratch on the 8': 3, 'L 8 early': 3, 'W scratch on the 8': 3, 'W 8 in the wrong pocket': 2}
+  cpu per decision 11452 ms (includes opponent)
+round 18 done in 96 min: {'round': 18, 'gate': 0.53, 'champ': 'nets6/r18.npz', 'ev': 0.533}
+=== round 19, champion nets6/r18.npz, Fri Nov  6 12:49:47 2026
+gen r18.npz vs r18.npz: 300 games, score 0.480, 3320 positions [1228s]
+gen r18.npz vs ev: 100 games, score 0.590, 1069 positions [754s]
+  pass 0: dev loss 0.5762, 16 epochs
+  pass 1: dev loss 0.5700, 28 epochs
+  pass 2: dev loss 0.5692, 15 epochs
+fit: 82585 positions, 7600 games [18s]; holdout loss analytic 0.6517, rescaled (slope 0.43) 0.6065, net 0.5448; gain +0.0618 +- 0.0137
+r19.npz vs r18.npz: 300 games, score 0.503 +- 0.057 [1137s]
+  net: make 91.8% (1453/1582), fouls 3.3%, scratches 45, invalid 0
+  opp: make 90.7% (1362/1501), fouls 3.2%, scratches 40, invalid 0
+  ends: {'W 8 legally pocketed': 147, 'L 8 legally pocketed': 141, 'L 8 early': 5, 'W 8 early': 4, 'L 8 in the wrong pocket': 2, 'L scratch on the 8': 1}
+  cpu per decision 5647 ms (includes opponent)
+promoted nets6/r19.npz, gate 0.503
+round 19 done in 52 min: {'round': 19, 'gate': 0.503, 'champ': 'nets6/r19.npz'}
+=== round 20, champion nets6/r19.npz, Fri Nov  6 13:42:05 2026
+gen r19.npz vs r19.npz: 300 games, score 0.493, 3298 positions [1108s]
+gen r19.npz vs ev: 100 games, score 0.490, 1095 positions [841s]
+  pass 0: dev loss 0.5696, 14 epochs
+  pass 1: dev loss 0.5654, 36 epochs
+  pass 2: dev loss 0.5646, 37 epochs
+fit: 86978 positions, 8000 games [28s]; holdout loss analytic 0.6499, rescaled (slope 0.43) 0.6067, net 0.5548; gain +0.0519 +- 0.0139
+r20.npz vs r19.npz: 300 games, score 0.493 +- 0.057 [1168s]
+  net: make 91.2% (1393/1528), fouls 2.8%, scratches 40, invalid 0
+  opp: make 91.7% (1401/1527), fouls 2.6%, scratches 37, invalid 0
+  ends: {'L 8 legally pocketed': 146, 'W 8 legally pocketed': 140, 'L 8 early': 5, 'W 8 early': 4, 'W scratch on the 8': 3, 'L scratch on the 8': 1}
+  cpu per decision 5955 ms (includes opponent)
+kept nets6/r19.npz, gate 0.493
+round 20 done in 52 min: {'round': 20, 'gate': 0.493, 'champ': 'nets6/r19.npz'}
+LOOP FINISHED
+LOOP_EXIT

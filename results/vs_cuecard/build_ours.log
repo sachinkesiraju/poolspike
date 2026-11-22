@@ -1,0 +1,5 @@
+corner: 1354 of 2304 entries filled from neighbours; mean p 0.562
+side: 2064 of 2880 entries filled from neighbours; mean p 0.537
+tables [ours] 5184 entries x 48 samples [28s]
+break [ours]: {'x': 0.84, 'y': 0.44530000000000003, 'v': 9.0, 'a': 0.0, 'b': 0.0, 'dphi': 0.0, 'keep': 0.765, 'spread': 0.3363333333333337, 'scratch': 0.085, 'score': 0.8322666666666667} [111s]
+done

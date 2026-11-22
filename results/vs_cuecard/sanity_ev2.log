@@ -1,0 +1,6 @@
+cc vs ev: 8 games, score 0.250 [143s]
+  make 31/38, fouls 1/42, invalid 0, errors 0, opp fallbacks 0
+  shoot cpu/decision mean 2.94s median 2.64 p90 6.11 max 8.38 (n=37)
+  ball-in-hand cpu/decision mean 1.59s max 1.59 (n=1)
+  stats {'decisions': 42, 'last_resort': 3, 'deep': 17, 'late': 8, 'bih': 1, 'level2_changed': 15}
+  ends {'L 8 legally pocketed': 5, 'W 8 legally pocketed': 1, 'W scratch on the 8': 1, 'L scratch on the 8': 1}

@@ -1,0 +1,6 @@
+cc vs greedy: 50 games, score 0.940 [235s]
+  make 330/368, fouls 18/406, invalid 0, errors 0, opp fallbacks 0
+  shoot cpu/decision mean 3.31s median 3.14 p90 5.84 max 11.81 (n=351)
+  ball-in-hand cpu/decision mean 3.47s max 9.00 (n=30)
+  stats {'decisions': 406, 'last_resort': 21, 'deep': 93, 'late': 143, 'bih': 30, 'level2_changed': 134}
+  ends {'W 8 legally pocketed': 45, 'L 8 legally pocketed': 2, 'L 8 early': 1, 'W scratch on the 8': 1, 'W 8 early': 1}

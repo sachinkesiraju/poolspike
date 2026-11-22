@@ -1,0 +1,5 @@
+cc vs ev: 300 games, score 0.500 +- 0.057 (95%)
+  cc: make 88.7% (1487/1677), fouls 3.7% of 1873 shots, scratches 54, invalid 0, agent errors 0
+  ev: make 90.2% (1490/1652), fouls 4.4% of 1877 shots, scratches 63, invalid 0, agent errors 0
+  ends: {'A loses: 8 legally pocketed': 146, 'A wins: 8 legally pocketed': 145, 'A loses: 8 early': 4, 'A wins: scratch on the 8': 2, 'A wins: 8 early': 2, 'A wins: 8 in the wrong pocket': 1}
+  noise ours, rules ours, seeds [601000, 601150), 0 failed games, 4297s wall
