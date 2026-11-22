@@ -3,7 +3,7 @@
 An agent is a callable `act(turn) -> action` (or an object with `.act`).
 match.py builds one per game via a factory `factory(seed=int, seat=str)`:
 
-  python -B match.py py:agent.py:Example ev --seeds 600000 600010
+  python -B match.py py:example_agent.py:Example ev --seeds 600000 600010
 
 `turn` (what the server sends; see pool8/PROTOCOL.md):
   phase         "break" | "shoot" | "ball_in_hand" | "ball_in_hand_kitchen"

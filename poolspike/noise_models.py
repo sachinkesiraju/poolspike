@@ -13,7 +13,7 @@ our call-shot rules) is untouched:
                         not assign groups.
 
 `apply_from_env()` must run in every process before the game engine and the
-agents are built (vnet2.play_ and bench/match.py call it). It mutates the
+agents are built (judge_net.play_ and bench/match.py call it). It mutates the
 shared `policy.DEFAULT` config in place (every agent and the engine read their
 noise from it or from copies made later) and swaps `policy.noisy`, so the
 engine's execution noise and every agent's internal noise model agree.

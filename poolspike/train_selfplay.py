@@ -2,7 +2,7 @@
 test the new net against the current champion, promote it only if it scores above
 0.5. Every few rounds the champion plays EV on fresh seeds. Resumes from loop.json.
 
-  loop5.py START_NET ROUNDS
+  train_selfplay.py START_NET ROUNDS
 """
 import json
 import os
@@ -20,7 +20,7 @@ EVERY = 3
 
 def sh(*a, env=None):
     e = dict(os.environ, **(env or {}))
-    p = subprocess.run([PY, "-B", "vnet2.py", *a], capture_output=True, text=True, env=e)
+    p = subprocess.run([PY, "-B", "judge_net.py", *a], capture_output=True, text=True, env=e)
     out = "\n".join(l for l in p.stdout.splitlines() if l.strip())
     with open(f"{R}/loop.log", "a") as f:
         f.write(out + "\n")

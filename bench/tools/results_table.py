@@ -1,6 +1,6 @@
 """Results table from match logs.
 
-  python -B tools/results.py results/*.jsonl > results/table.md
+  python -B tools/results_table.py results/*.jsonl > results/table.md
 """
 import collections as C
 import json

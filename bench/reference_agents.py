@@ -1,7 +1,7 @@
 """Reference agents and the spec -> agent factory used by match.py.
 
-Every agent is a callable `turn -> action` (see agent.py). Seeds follow the
-original evaluation harness (poolspike/vnet2.py): the first agent of a match gets
+Every agent is a callable `turn -> action` (see example_agent.py). Seeds follow the
+original evaluation harness (poolspike/judge_net.py): the first agent of a match gets
 crc32(f"{seed}{seat}"), the second crc32(f"o{seed}{seat}"), so a match here
 reproduces the published numbers game for game.
 
@@ -10,7 +10,7 @@ reproduces the published numbers game for game.
   ev            noise-aware expected-value search (pool8/policy.py, POLICY.md)
   cc[:mult]     CueCard rebuild (ref/cuecard.py); mult scales its search budget
   poolspike     Poolspike: hand-written candidates + noisy simulations, judged
-                by a value net trained by 19 rounds of self-play (ref/shotnet5.py,
+                by a value net trained by 19 rounds of self-play (ref/poolspike_player.py,
                 weights ref/nets/poolspike.npz). `r19`, its name in the logs,
                 is an alias.
   n5:<npz>      any ShotNet5 weights file
@@ -39,9 +39,9 @@ def make(spec: str, seed: int, seat: str, role: str = "a"):
         import cuecard
         return cuecard.CueCard(spec, seed=s).act
     if spec in ("poolspike", "r19") or spec.startswith("n5:"):
-        import shotnet5
+        import poolspike_player
         from rl import encode as E
-        me = shotnet5.ShotNet5(spec[3:] if spec.startswith("n5:") else POOLSPIKE, seed=s)
+        me = poolspike_player.ShotNet5(spec[3:] if spec.startswith("n5:") else POOLSPIKE, seed=s)
 
         def act(turn):
             # record the judge's win chance for the position before each shot

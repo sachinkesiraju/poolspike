@@ -35,7 +35,7 @@ shots (paper: under 1-2%), CPU about 3.3 s per decision on one core
 
 ## Calibration of r19's judge (out of distribution under ICGA noise)
 
-`tools/calibration.py`: the judge's win chance for each position r19 faced,
+`tools/judge_calibration.py`: the judge's win chance for each position r19 faced,
 binned, against how the game ended.
 
 | setting | positions | mean predicted | won | Brier |

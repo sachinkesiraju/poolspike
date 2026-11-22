@@ -9,21 +9,23 @@ Released with Poolspike, November 2026. MIT license (see ../LICENSE).
 ## Contents
 
 ```
-match.py          match runner: A vs B on fixed seeds, both seats, 95% CIs
-agents.py         agent specs -> agents (reference agents + your own)
-agent.py          the turn / action format, and an example agent to copy
-pool8/            simulator + rules + game engine (vendored, pinned)
-  engine.py         the game state machine (one rule function, one noise model)
-  policy.py         physics wrapper, rules (adjudicate), noise (noisy), EV agent
-  rl/env.py         PoolEnv: single-agent env over engine.Match
-  PROTOCOL.md       wire format of turns and actions
-ref/              reference agents (vendored)
-  shotnet5.py, shotnet.py, vnet.py, vnet2.py, nets/poolspike.npz   Poolspike
-  cuecard.py, cc_data/                                              CueCard rebuild
-  noise_models.py   the ICGA-2008 noise / rules variants
-results/          the reference results table and per-game logs
-tools/            results table and calibration scripts
-MANIFEST.sha256   hashes of every vendored file
+match.py              match runner: A vs B on fixed seeds, both seats, 95% CIs
+reference_agents.py   agent specs -> agents (reference agents + your own)
+example_agent.py      the turn / action format, and an example agent to copy
+pool8/                simulator + rules + game engine (vendored, pinned)
+  engine.py             the game state machine (one rule function, one noise model)
+  policy.py             physics wrapper, rules (adjudicate), noise (noisy), EV agent
+  rl/env.py             PoolEnv: single-agent env over engine.Match
+  PROTOCOL.md           wire format of turns and actions
+ref/                  reference agents (vendored)
+  poolspike_player.py   Poolspike player (with shotnet.py, vnet.py support code)
+  judge_net.py          Poolspike's learned judge
+  nets/poolspike.npz    Poolspike weights
+  cuecard.py, cc_data/  CueCard rebuild and its tables
+  noise_models.py       the ICGA-2008 noise / rules variants
+results/              the reference results table and per-game logs
+tools/                results_table.py, judge_calibration.py
+MANIFEST.sha256       hashes of every vendored file
 ```
 
 ## Setup
@@ -93,14 +95,14 @@ table, the ICGA 10-minute-per-game clock.
 
 An agent is `factory(seed=int, seat=str)` returning a callable
 `act(turn) -> action` (or an object with `.act`). The `turn` and `action`
-dicts are documented in `agent.py` and `pool8/PROTOCOL.md`; `agent.py` has a
+dicts are documented in `example_agent.py` and `pool8/PROTOCOL.md`; `example_agent.py` has a
 working example (`Example`, a geometric potter). Agents may plan with the
 simulator: `policy.simulate`, `policy.summarize`, `policy.adjudicate`,
 `policy.noisy(stroke, rng, policy.DEFAULT)`; under `--noise icga2008` these
 already use the tournament noise. Run it:
 
 ```
-python -B match.py py:agent.py:Example greedy --seeds 600000 600050
+python -B match.py py:example_agent.py:Example greedy --seeds 600000 600050
 ```
 
 Invalid actions are replaced by the engine's fallback shot and counted; an
@@ -134,7 +136,7 @@ Agent specs: `greedy`, `lite`, `ev`, `cc` / `cc:<budget multiplier>`,
   search. Direct/bank/kick/combo lanes, a speed x draw/follow x english sweep,
   per-stroke aim solving, sampled outcomes under the table noise, an analytic
   leave evaluator and race model. `lite` is its budget preset.
-* **poolspike** (alias `r19`, its name in the logs; `ref/shotnet5.py` +
+* **poolspike** (alias `r19`, its name in the logs; `ref/poolspike_player.py` +
   `ref/nets/poolspike.npz`): hand-written candidate generation and fine aim, 24 noisy simulations per shortlisted shot, choosing
   the best mean win chance under a learned position judge (VNet2, trained by
   19 rounds of self-play). It is a hybrid, not a pure net: the judge's inputs

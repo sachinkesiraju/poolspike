@@ -27,7 +27,7 @@ import zlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import shotnet as SN  # noqa: E402
-import shotnet5 as N5  # noqa: E402
+import poolspike_player as N5  # noqa: E402
 import numpy as np  # noqa: E402
 from shotnet import E, P  # noqa: E402
 
@@ -41,8 +41,8 @@ def wrap(d):
 
 
 def gvec(st, me, opp, bih, kitchen):
-    import vnet2
-    e = vnet2.encode(st, me, opp, bih, kitchen)
+    import judge_net
+    e = judge_net.encode(st, me, opp, bih, kitchen)
     return None if e is None else e
 
 
@@ -132,9 +132,9 @@ _V = None
 def _vnet():
     global _V
     if _V is None:
-        import vnet2
+        import judge_net
         z = np.load(os.environ.get("R19", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nets", "poolspike.npz")))
-        _V = vnet2.VNet2({k: z[k] for k in z.files})
+        _V = judge_net.VNet2({k: z[k] for k in z.files})
     return _V
 
 

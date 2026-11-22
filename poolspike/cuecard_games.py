@@ -2,7 +2,7 @@
 reports per-decision CPU time, how often each mechanism fires, rule outcomes
 and any exceptions (CueCard errors are NOT masked here, unlike PoolEnv).
 
-  cc_games.py OPP LO HI WORKERS [SPEC] [OUT.jsonl]
+  cuecard_games.py OPP LO HI WORKERS [SPEC] [OUT.jsonl]
 """
 import collections as C
 import json
@@ -24,7 +24,7 @@ def one(job):
     import noise_models
     noise_models.apply_from_env()
     import cuecard
-    import vnet2
+    import judge_net
     from rl import env as ENV
     cc = cuecard.CueCard(spec, seed=zlib.crc32(f"{seed}{seat}".encode()))
     times, kinds, errs = [], C.Counter(), []
@@ -39,7 +39,7 @@ def one(job):
         times.append((turn["phase"], time.process_time() - t))
         kinds[(w.get("meta") or {}).get("kind")] += 1
         return w
-    env = ENV.PoolEnv(opponent=vnet2.opponent(opp, seed, seat, 0.0), agent_seat=seat)
+    env = ENV.PoolEnv(opponent=judge_net.opponent(opp, seed, seat, 0.0), agent_seat=seat)
     obs = env.reset(seed)
     while obs is not None:
         obs, _, _, _ = env.step(act(obs))

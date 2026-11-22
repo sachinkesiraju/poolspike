@@ -10,12 +10,14 @@ formula. Poolspike keeps the search and learns the evaluation, and sets a new
 state of the art over hand-tuned search: it beats our rebuild of CueCard, the
 2008 tournament champion, and our strongest hand-written agent, EV.
 
-![Poolspike choosing a bank shot: its shortlist of 6 options, each with the make rate over 24 noisy simulations and the learned win chance](media/shot.png)
+![Poolspike against EV: before each shot it shows its shortlist, with each option's make rate over 24 noisy simulations and its learned win chance, then plays the shot](media/poolspike.gif)
 
-*Poolspike (stripes) against EV. The right panel shows its shortlist: make
-rate over 24 noisy simulations and the judge's win chance for each option.
-Full game: [media/poolspike_vs_ev.mp4](media/poolspike_vs_ev.mp4). In the
-logs, Poolspike's agent name is `r19` (round 19 of training).*
+*Poolspike (stripes) runs out against EV. Before each shot, the right panel
+shows its shortlist: make rate over 24 noisy simulations and the judge's win
+chance for each option. Full game, with sound:
+[media/poolspike_vs_ev.mp4](media/poolspike_vs_ev.mp4). Render your own with
+[`viz/`](viz/README.md). In the logs, Poolspike's agent name is `r19` (round
+19 of training).*
 
 | Match (95% intervals; a win counts 1) | Games | Poolspike score |
 |---|---|---|
@@ -87,7 +89,7 @@ The network learns only a correction to the hand-written estimate. That is why
 
 ### Training
 
-Each round of `poolspike/loop5.py`:
+Each round of `poolspike/train_selfplay.py`:
 
 1. **Play.** The champion plays 300 self-play games at temperature 0.3, plus
    100 games against EV.
@@ -116,31 +118,34 @@ games).
 ## Repository
 
 ```
-bench/        pool8-bench: self-contained benchmark. Start here (bench/README.md).
-  match.py      seeded match runner, both seats per seed, 95% intervals
-  agent.py      turn/action interface with an example agent
-  agents.py     reference agents: greedy, ev, cc (CueCard rebuild), poolspike
-  pool8/        simulator wrapper, rules, noise, game engine (pooltool 0.6.0)
-  ref/          vendored copies of the agent code, weights and CueCard tables
-  results/      RESULTS.md, CUECARD.md and per-game logs
-poolspike/    the player and its training
-  shotnet5.py   the Poolspike player: candidates, noisy sampling, shortlist
-  vnet2.py      the judge, plus data generation, fitting and evaluation
-  loop5.py      self-play training loop
-  cuecard.py    CueCard rebuild (cc_data/: its precomputed tables)
-  nets/v0.npz   starting judge
-  nets/poolspike.npz  final Poolspike network (round 19)
-sim/          game engine, rules, physics wrapper and EV policy
-results/      logs behind the reported numbers
-  training/     20 rounds: loop.log, gate and EV-check games
-  vs_cuecard/   Poolspike and CueCard matches, both noise models
-  vs_ev/        final 1,000-game Poolspike vs EV confirmation
-  runout/       run-out rate from 200 start positions
-media/        a full game video, the still above and the judge diagram
+bench/                  pool8-bench: self-contained benchmark. Start here (bench/README.md).
+  match.py                seeded match runner, both seats per seed, 95% intervals
+  example_agent.py        turn/action interface with an example agent to copy
+  reference_agents.py     reference agents: greedy, ev, cc (CueCard rebuild), poolspike
+  pool8/                  simulator wrapper, rules, noise, game engine (pooltool 0.6.0)
+  ref/                    vendored copies of the agent code, weights and CueCard tables
+  results/                RESULTS.md, CUECARD.md and per-game logs
+  tools/                  results_table.py, judge_calibration.py
+poolspike/              the player and its training
+  poolspike_player.py     the player: candidates, noisy sampling, shortlist
+  judge_net.py            the judge, plus data generation, fitting and evaluation
+  train_selfplay.py       self-play training loop
+  cuecard.py              CueCard rebuild (cc_data/: its precomputed tables)
+  nets/v0.npz             starting judge
+  nets/poolspike.npz      final Poolspike network (round 19)
+sim/                    game engine, rules, physics wrapper and EV policy
+results/                logs behind the reported numbers
+  training/               20 rounds: loop.log, gate and EV-check games
+  vs_cuecard/             Poolspike and CueCard matches, both noise models
+  vs_ev/                  final 1,000-game Poolspike vs EV confirmation
+  runout/                 run-out rate from 200 start positions
+viz/                    render any game as a video with table sounds (viz/README.md)
+media/                  the game above (GIF, and full video with sound), judge diagram
 ```
 
 The logs in `results/` were written before this layout, so the paths inside
-them use the old folder names (`wsp/`, `nets6/`, `runs/v6`).
+them use the old folder and file names (`wsp/`, `nets6/`, `runs/v6`,
+`vnet2.py`, `shotnet5.py`).
 
 ## Quick start
 
@@ -154,18 +159,18 @@ cd bench
 ../.venv/bin/python -B match.py poolspike cc --seeds 600000 600010 --workers 4
 ```
 
-That plays 20 games of Poolspike against the CueCard rebuild (`cc`).
-The headline match is `--seeds 600000 600500 --workers 9`, about 80 minutes on
+That plays 20 games of Poolspike against the CueCard rebuild (`cc`). The
+headline match is `--seeds 600000 600500 --workers 9`, about 80 minutes on
 a 10-core Mac mini. Add `--noise icga2008 --rules icga` for tournament
 conditions. To score your own agent, pass `py:path/to/file.py:factory`; see
-`agent.py`.
+`example_agent.py`.
 
-To retrain (about 25 hours), first set `R` in `poolspike/loop5.py` to a new
-directory so the logs in `results/training` are not appended to, then run
-from `poolspike/`:
+To retrain (about 25 hours), first set `R` in `poolspike/train_selfplay.py`
+to a new directory so the logs in `results/training` are not appended to,
+then run from `poolspike/`:
 
 ```bash
-../.venv/bin/python -B loop5.py nets/v0.npz 20
+../.venv/bin/python -B train_selfplay.py nets/v0.npz 20
 ```
 
 ## Evaluation protocol
@@ -185,7 +190,8 @@ from `poolspike/`:
 - **CueCard is a reimplementation.** Its code and the POOLFIZ simulator were
   never released. Our rebuild runs at about 1% of the original's simulation
   budget, and some parameters fill gaps the papers leave open.
-- **One simulator.** All results are in pooltool. Transfer to other physics
+- **One simulator.** All results are in
+  [pooltool](https://github.com/ekiefl/pooltool). Transfer to other physics
   engines or real tables is untested.
 - **Not learned from scratch.** The judge starts from EV's hand-written
   evaluation and learns a correction.

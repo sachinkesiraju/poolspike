@@ -5,10 +5,10 @@ with whole-position numbers (including the analytic value as one input) -> win
 probability for the player to move. Targets blend the game result with the net's
 own next-position estimate (lambda return). Table mirror symmetry is augmented.
 
-  vnet2.py gen NET OPP LO HI WORKERS TAU OUT.npz
-  vnet2.py fit OUT.npz PREV.npz|- DATA...
-  vnet2.py eval NET OPP LO HI WORKERS OUT.jsonl
-  vnet2.py gradcheck
+  judge_net.py gen NET OPP LO HI WORKERS TAU OUT.npz
+  judge_net.py fit OUT.npz PREV.npz|- DATA...
+  judge_net.py eval NET OPP LO HI WORKERS OUT.jsonl
+  judge_net.py gradcheck
 OPP: lite | ev | greedy | n5:<npz> | cc[:budget multiplier] (CueCard rebuild)
 """
 import collections as C
@@ -224,14 +224,14 @@ def fit(out, prev, *data):
     print(f"fit: {len(y)} positions, {len(gs)} games [{time.time() - t0:.0f}s]; holdout loss analytic {loss(G[H, 0], y[H]):.4f}, "
           f"rescaled (slope {a:.2f}) {loss(base, y[H]):.4f}, net {loss(L, y[H]):.4f}; "
           f"gain {per.mean():+.4f} +- {1.96 * per.std() / len(per) ** .5:.4f}", flush=True)
-    import shotnet5 as N5
+    import poolspike_player as N5
     z = dict(N5.linear({"value_mean": 30.0}, g=0.02))
     z.update(net.save())
     np.savez(out, **z)
 
 
 def opponent(spec, seed, seat, tau):
-    import shotnet5 as N5
+    import poolspike_player as N5
     from rl import env as ENV
     if spec == "cc" or spec.startswith("cc:"):      # CueCard rebuild (cuecard.py)
         import cuecard
@@ -264,7 +264,7 @@ def play(job):
 
 
 def play_(job):
-    import shotnet5 as N5
+    import poolspike_player as N5
     from rl import encode as E
     from rl import env as ENV
     a, opp, seed, seat, tau, log = job

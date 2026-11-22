@@ -1,4 +1,4 @@
-"""ShotNet v3: the same small scorer over a wider option set and richer features.
+"""The Poolspike player: candidate shots, noisy simulation, and a learned judge.
 
 Options: more lanes, EV's lite stroke grid (with side spin), real ball-in-hand
 placements, deep lanes when direct pots are poor, the search's fallback when
@@ -298,8 +298,8 @@ class ShotNet5:
             import vnet
             self.vnet = vnet.VNet(self.w)
         if "v2_A" in self.w:
-            import vnet2
-            self.vnet = vnet2.VNet2(self.w)
+            import judge_net
+            self.vnet = judge_net.VNet2(self.w)
 
     def score(self, X):
         return (np.tanh(X @ self.w["W"]) @ self.w["v"]).ravel()

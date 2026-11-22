@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 *.err
 .DS_Store
+viz/out/
+viz/replay_out/
+viz/gallery/
