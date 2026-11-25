@@ -1,4 +1,4 @@
-r19.npz vs ev: 1000 games, score 0.595 +- 0.030 [8068s]
+oneply vs ev: 1000 games, score 0.595 +- 0.030 [8068s]
   net: make 91.0% (5275/5798), fouls 2.7%, scratches 138, invalid 0
   opp: make 90.1% (4433/4919), fouls 3.4%, scratches 152, invalid 0
   ends: {'W 8 legally pocketed': 578, 'L 8 legally pocketed': 393, 'W scratch on the 8': 7, 'L 8 early': 7, 'W 8 early': 6, 'L scratch on the 8': 3}

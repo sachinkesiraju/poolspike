@@ -3,12 +3,12 @@ Fri Nov 20 19:14:23 EST 2026 end cc_vs_greedy
 Fri Nov 20 19:14:23 EST 2026 start cc_vs_ev
 Fri Nov 20 20:26:00 EST 2026 end cc_vs_ev
 Fri Nov 20 20:26:00 EST 2026 gate: cc_vs_ev score 0.500 (need >= 0.40)
-Fri Nov 20 20:26:00 EST 2026 start r19_vs_cc
-Fri Nov 20 21:44:12 EST 2026 end r19_vs_cc
-Fri Nov 20 21:44:12 EST 2026 start icga_r19_vs_cc
-Fri Nov 20 22:12:15 EST 2026 end icga_r19_vs_cc
-Fri Nov 20 22:12:15 EST 2026 start icga_r19_vs_ev
-Fri Nov 20 22:58:27 EST 2026 end icga_r19_vs_ev
-Fri Nov 20 22:58:27 EST 2026 start r19_vs_cc4
-Fri Nov 20 23:14:21 EST 2026 end r19_vs_cc4
+Fri Nov 20 20:26:00 EST 2026 start oneply_vs_cc
+Fri Nov 20 21:44:12 EST 2026 end oneply_vs_cc
+Fri Nov 20 21:44:12 EST 2026 start icga_oneply_vs_cc
+Fri Nov 20 22:12:15 EST 2026 end icga_oneply_vs_cc
+Fri Nov 20 22:12:15 EST 2026 start icga_oneply_vs_ev
+Fri Nov 20 22:58:27 EST 2026 end icga_oneply_vs_ev
+Fri Nov 20 22:58:27 EST 2026 start oneply_vs_cc4
+Fri Nov 20 23:14:21 EST 2026 end oneply_vs_cc4
 ALLDONE

@@ -1,5 +1,5 @@
-"""Calibration of r19's judge from match logs: the judge's win chance for each
-position r19 faced vs how that game actually ended.
+"""Calibration of Poolspike's judge from match logs: the judge's win chance for each
+position the player faced vs how that game actually ended.
 
   python -B tools/judge_calibration.py games.jsonl [more.jsonl ...]
 """

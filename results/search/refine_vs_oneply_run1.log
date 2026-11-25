@@ -1,0 +1,24 @@
+[128s] 9 pairs (20 games): score 0.611 +- 0.136 (95%, paired)  LLR +0.28 (bounds +-2.94)
+[241s] 19 pairs (40 games): score 0.526 +- 0.115 (95%, paired)  LLR +0.01 (bounds +-2.94)
+[371s] 29 pairs (60 games): score 0.534 +- 0.095 (95%, paired)  LLR +0.10 (bounds +-2.94)
+[489s] 39 pairs (80 games): score 0.538 +- 0.082 (95%, paired)  LLR +0.24 (bounds +-2.94)
+[581s] 50 pairs (100 games): score 0.540 +- 0.067 (95%, paired)  LLR +0.39 (bounds +-2.94)
+[726s] 59 pairs (120 games): score 0.551 +- 0.061 (95%, paired)  LLR +1.05 (bounds +-2.94)
+[838s] 70 pairs (140 games): score 0.550 +- 0.060 (95%, paired)  LLR +1.27 (bounds +-2.94)
+[945s] 80 pairs (160 games): score 0.537 +- 0.057 (95%, paired)  LLR +0.73 (bounds +-2.94)
+[1060s] 89 pairs (180 games): score 0.539 +- 0.054 (95%, paired)  LLR +0.92 (bounds +-2.94)
+[1195s] 99 pairs (200 games): score 0.551 +- 0.051 (95%, paired)  LLR +1.80 (bounds +-2.94)
+[1325s] 109 pairs (220 games): score 0.532 +- 0.051 (95%, paired)  LLR +0.60 (bounds +-2.94)
+[1453s] 119 pairs (240 games): score 0.529 +- 0.051 (95%, paired)  LLR +0.43 (bounds +-2.94)
+[1587s] 129 pairs (260 games): score 0.516 +- 0.049 (95%, paired)  LLR -0.61 (bounds +-2.94)
+[1708s] 140 pairs (280 games): score 0.532 +- 0.049 (95%, paired)  LLR +0.68 (bounds +-2.94)
+[1842s] 150 pairs (300 games): score 0.540 +- 0.047 (95%, paired)  LLR +1.40 (bounds +-2.94)
+[1972s] 158 pairs (320 games): score 0.547 +- 0.046 (95%, paired)  LLR +2.15 (bounds +-2.94)
+[2082s] 169 pairs (340 games): score 0.541 +- 0.045 (95%, paired)  LLR +1.72 (bounds +-2.94)
+[2203s] 179 pairs (360 games): score 0.547 +- 0.044 (95%, paired)  LLR +2.40 (bounds +-2.94)
+185 pairs (372 games): score 0.554 +- 0.044 (95%, paired)  LLR +3.14 (bounds +-2.94)
+  CPU per decision: A 5.39s, B 4.18s, ratio 1.29
+  a: make 91.9%, fouls 2.5%, safeties 30 of 2184 shots, scratches 46
+  b: make 91.1%, fouls 3.5%, safeties 41 of 2033 shots, scratches 56
+  A stats: {'decisions': 1997, 'switched': 387, 'endgame': 0}
+  SPRT: H1 accepted; 2279s wall
