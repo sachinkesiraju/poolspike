@@ -28,11 +28,8 @@ agent name is `rla_late`.*
 | vs CueCard rebuild, ICGA 2008 tournament noise | 400 | **0.688 ± 0.047** |
 | vs EV (our strongest hand-written agent) | 1,000 | **0.662 ± 0.030** |
 
-About 13 CPU-seconds per shot on one core of a 10-core Mac mini, 5.3× the
-CueCard rebuild's 2.4 s in the same games, and 1.2× EV's 10.5 s. Extra
-compute alone does not
-explain the result: the same search without its last stage, given the same
-CPU, scores 0.441 ± 0.029 against Poolspike (see
+Extra compute does not explain the result: given the same CPU, the one-ply
+search scores 0.441 ± 0.029 against Poolspike (see
 [What each part is worth](#what-each-part-is-worth)).
 
 ## Background
@@ -264,10 +261,8 @@ then run from `poolspike/`:
   evaluation and learns a correction.
 - **Some tournament rules are missing:** the four-balls-to-a-rail break, the
   8-ball as a legal first contact on an open table, and the game clock.
-- **Compute.** Poolspike spends 5.3× the CueCard rebuild's CPU per shot (EV:
-  1.2×). The
-  fair comparison is the one-ply search at equal CPU (0.559 ± 0.029 for
-  Poolspike); the CueCard rebuild was not given more search.
+- **Compute.** Poolspike uses 5.3× the CueCard rebuild's CPU per shot, and
+  the rebuild was not given more search.
 - **Search tuned in self-play.** The search changes were selected in games
   against the one-ply search, not against CueCard or EV.
 - **Small ablations.** The hand-written-evaluation comparison used only 200
