@@ -1,20 +1,20 @@
-"""Student nets distilled from r19.
+"""Student nets distilled from Poolspike.
 
   python distill.py build DATADIR OUT.npz [B]     features + labels from teacher logs (B = with 1 noiseless sim)
   python distill.py train DATA.npz OUT.npz         fit the student
   python distill.py report DATA.npz NET.npz        holdout accuracy
 
-Student = candidate scorer. Candidates come from cheap geometry (r19's own lane
+Student = candidate scorer. Candidates come from cheap geometry (Poolspike's own lane
 order and ball-in-hand spots, its 13/5-stroke grids); aim = ghost-ball angle +
 a learned correction (no window search). Per candidate it predicts:
-  feas  : does this stroke pot at all (r19's window search found a window)
-  dphi  : aim correction, degrees (r19's window centre / refined aim - ghost-ball angle)
-  s1    : r19's first-stage score for it
-  pick  : r19's final choice (listwise softmax within a decision)
+  feas  : does this stroke pot at all (Poolspike's window search found a window)
+  dphi  : aim correction, degrees (Poolspike's window centre / refined aim - ghost-ball angle)
+  s1    : Poolspike's first-stage score for it
+  pick  : Poolspike's final choice (listwise softmax within a decision)
 Modes at play (DS_MODE):
   A  no simulation at all
-  B  one noiseless simulation per candidate adds leave features (r19's base_features)
-  C  B's top DS_K candidates are checked the r19 way (window, refine, 28 noisy sims, r19's scorer)
+  B  one noiseless simulation per candidate adds leave features (Poolspike's base_features)
+  C  B's top DS_K candidates are checked Poolspike's way (window, refine, 28 noisy sims, Poolspike's scorer)
 """
 import glob
 import gzip
@@ -133,7 +133,7 @@ def _vnet():
     global _V
     if _V is None:
         import judge_net
-        z = np.load(os.environ.get("R19", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nets", "poolspike.npz")))
+        z = np.load(os.environ.get("TEACHER_NET", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nets", "poolspike.npz")))
         _V = judge_net.VNet2({k: z[k] for k in z.files})
     return _V
 
@@ -335,7 +335,7 @@ class Student:
         self.k = int(k or os.environ.get("DS_K", 4))
         self.ns = int(os.environ.get("DS_NS", N5.NOISY0 + N5.NOISY1))   # noisy sims per checked candidate
         self.refine = os.environ.get("DS_REFINE", "1") == "1"
-        self.r19 = N5.ShotNet5(os.environ.get("R19", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nets", "poolspike.npz")))
+        self.teacher = N5.ShotNet5(os.environ.get("TEACHER_NET", os.path.join(os.path.dirname(os.path.abspath(__file__)), "nets", "poolspike.npz")))
         self.stats = {"student": 0, "fallback": 0, "checked": 0}
 
     def candidates(self, turn, pos):
@@ -359,14 +359,14 @@ class Student:
 
     def act(self, turn):
         if turn["phase"] == "break":
-            return self.r19.act(turn)
+            return self.teacher.act(turn)
         pos = position(turn)
         cands = [] if pos is None else self.candidates(turn, pos)
         if not cands:
             self.stats["fallback"] += 1
-            return self.r19.act(turn)
+            return self.teacher.act(turn)
         st0, me, opp, ctx, G, Bs, cat, order = pos
-        N5.VNET = self.r19.vnet
+        N5.VNET = self.teacher.vnet
         X, bases = [], []
         for st, b, pk, gi, bih, C, q, rank in cands:
             x, _ = cand_feats(st, b, pk, gi, bih, q, rank, G, Bs, cat, order)
@@ -387,7 +387,7 @@ class Student:
         ok = [i for i in range(len(cands)) if o[i, 1] > 0]
         if not ok:
             self.stats["fallback"] += 1
-            return self.r19.act(turn)
+            return self.teacher.act(turn)
         ok.sort(key=lambda i: -o[i, 0])
         if self.mode == "C":
             w = self.check(turn, cands, phis, ok[:self.k], ctx)
@@ -416,7 +416,7 @@ class Student:
         return w
 
     def check(self, turn, cands, phis, top, ctx):
-        """r19's second stage on the student's shortlist: exact window, refine, 28 noisy sims, r19 scorer."""
+        """Poolspike's second stage on the student's shortlist: exact window, refine, 28 noisy sims, teacher scorer."""
         opts = []
         for i in top:
             st, b, pk, gi, bih, C, q, rank = cands[i]
@@ -437,7 +437,7 @@ class Student:
             opts.append(o)
         if not opts:
             return None
-        s = self.r19.score(np.array([o.vector() for o in opts]))
+        s = self.teacher.score(np.array([o.vector() for o in opts]))
         return opts[int(np.argmax(s))].wire
 
 

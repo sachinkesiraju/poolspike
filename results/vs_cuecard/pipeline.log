@@ -1,5 +1,5 @@
 Fri Nov 20 17:52:40 EST 2026 start cc_vs_ev
-Fri Nov 20 18:22:44 EST 2026 pipeline.sh stopped by hand after cc_vs_ev (r19_vs_cc gated on calibration; cc_vs_greedy runs on the laptop)
+Fri Nov 20 18:22:44 EST 2026 pipeline.sh stopped by hand after cc_vs_ev (poolspike_vs_cc gated on calibration; cc_vs_greedy runs on the laptop)
 Fri Nov 20 18:31:42 EST 2026 end cc_vs_ev
-Fri Nov 20 18:31:42 EST 2026 start r19_vs_cc
-Fri Nov 20 18:32:35 EST 2026 r19_vs_cc auto-start killed after 1 min (rebuild under repair)
+Fri Nov 20 18:31:42 EST 2026 start poolspike_vs_cc
+Fri Nov 20 18:32:35 EST 2026 poolspike_vs_cc auto-start killed after 1 min (rebuild under repair)

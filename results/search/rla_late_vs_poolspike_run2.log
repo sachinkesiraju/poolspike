@@ -1,0 +1,12 @@
+[349s] 10 pairs (20 games): score 0.650 +- 0.198 (95%, paired)  LLR +0.46 (bounds +-2.94)
+[601s] 19 pairs (40 games): score 0.605 +- 0.156 (95%, paired)  LLR +0.56 (bounds +-2.94)
+[935s] 28 pairs (60 games): score 0.643 +- 0.120 (95%, paired)  LLR +1.20 (bounds +-2.94)
+[1182s] 38 pairs (80 games): score 0.632 +- 0.107 (95%, paired)  LLR +1.58 (bounds +-2.94)
+[1451s] 49 pairs (100 games): score 0.612 +- 0.091 (95%, paired)  LLR +1.67 (bounds +-2.94)
+[1748s] 59 pairs (120 games): score 0.627 +- 0.080 (95%, paired)  LLR +2.54 (bounds +-2.94)
+66 pairs (134 games): score 0.629 +- 0.077 (95%, paired)  LLR +2.95 (bounds +-2.94)
+  CPU per decision: A 17.28s, B 4.31s, ratio 4.01
+  a: make 94.1%, fouls 1.9%, safeties 9 of 802 shots, scratches 9
+  b: make 90.4%, fouls 2.9%, safeties 8 of 690 shots, scratches 14
+  A stats: {'decisions': 734, 'switched': 181, 'endgame': 483}
+  SPRT: H1 accepted; 1920s wall

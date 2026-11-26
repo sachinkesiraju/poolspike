@@ -1,0 +1,26 @@
+[114s] 10 pairs (20 games): score 0.500 +- 0.240 (95%, paired)  LLR -0.03 (bounds +-2.94)
+[195s] 19 pairs (40 games): score 0.526 +- 0.154 (95%, paired)  LLR +0.05 (bounds +-2.94)
+[294s] 29 pairs (60 games): score 0.517 +- 0.131 (95%, paired)  LLR +0.01 (bounds +-2.94)
+[372s] 40 pairs (80 games): score 0.475 +- 0.109 (95%, paired)  LLR -0.39 (bounds +-2.94)
+[476s] 49 pairs (100 games): score 0.490 +- 0.104 (95%, paired)  LLR -0.29 (bounds +-2.94)
+[567s] 60 pairs (120 games): score 0.533 +- 0.098 (95%, paired)  LLR +0.18 (bounds +-2.94)
+[652s] 69 pairs (140 games): score 0.536 +- 0.091 (95%, paired)  LLR +0.26 (bounds +-2.94)
+[746s] 79 pairs (160 games): score 0.532 +- 0.083 (95%, paired)  LLR +0.23 (bounds +-2.94)
+[837s] 90 pairs (180 games): score 0.533 +- 0.077 (95%, paired)  LLR +0.30 (bounds +-2.94)
+[945s] 99 pairs (200 games): score 0.525 +- 0.072 (95%, paired)  LLR +0.16 (bounds +-2.94)
+[1035s] 109 pairs (220 games): score 0.518 +- 0.068 (95%, paired)  LLR +0.02 (bounds +-2.94)
+[1134s] 119 pairs (240 games): score 0.529 +- 0.065 (95%, paired)  LLR +0.33 (bounds +-2.94)
+[1230s] 130 pairs (260 games): score 0.535 +- 0.062 (95%, paired)  LLR +0.52 (bounds +-2.94)
+[1335s] 139 pairs (280 games): score 0.536 +- 0.060 (95%, paired)  LLR +0.60 (bounds +-2.94)
+[1431s] 149 pairs (300 games): score 0.540 +- 0.058 (95%, paired)  LLR +0.79 (bounds +-2.94)
+[1556s] 159 pairs (320 games): score 0.538 +- 0.056 (95%, paired)  LLR +0.76 (bounds +-2.94)
+[1643s] 169 pairs (340 games): score 0.541 +- 0.054 (95%, paired)  LLR +0.96 (bounds +-2.94)
+[1730s] 180 pairs (360 games): score 0.550 +- 0.052 (95%, paired)  LLR +1.38 (bounds +-2.94)
+[1838s] 190 pairs (380 games): score 0.547 +- 0.051 (95%, paired)  LLR +1.35 (bounds +-2.94)
+[1934s] 200 pairs (400 games): score 0.545 +- 0.049 (95%, paired)  LLR +1.31 (bounds +-2.94)
+200 pairs (400 games): score 0.545 +- 0.049 (95%, paired)  LLR +1.31 (bounds +-2.94)
+  CPU per decision: A 3.74s, B 2.87s, ratio 1.30
+  a: make 90.3%, fouls 3.3%, safeties 46 of 2452 shots, scratches 65
+  b: make 88.4%, fouls 3.7%, safeties 46 of 2251 shots, scratches 58
+  A stats: {'decisions': 2252, 'switched': 399, 'endgame': 0}
+  SPRT: not run / undecided; 1934s wall

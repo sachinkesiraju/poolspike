@@ -1,0 +1,25 @@
+[126s] 9 pairs (20 games): score 0.500 +- 0.000 (95%, paired)  LLR -0.08 (bounds +-2.94)
+[211s] 19 pairs (40 games): score 0.474 +- 0.050 (95%, paired)  LLR -0.36 (bounds +-2.94)
+[329s] 29 pairs (60 games): score 0.483 +- 0.058 (95%, paired)  LLR -0.45 (bounds +-2.94)
+[427s] 39 pairs (80 games): score 0.500 +- 0.050 (95%, paired)  LLR -0.18 (bounds +-2.94)
+[504s] 50 pairs (100 games): score 0.500 +- 0.039 (95%, paired)  LLR -0.46 (bounds +-2.94)
+[618s] 59 pairs (120 games): score 0.508 +- 0.037 (95%, paired)  LLR -0.18 (bounds +-2.94)
+[720s] 70 pairs (140 games): score 0.500 +- 0.034 (95%, paired)  LLR -0.96 (bounds +-2.94)
+[803s] 80 pairs (160 games): score 0.500 +- 0.030 (95%, paired)  LLR -1.21 (bounds +-2.94)
+[908s] 90 pairs (180 games): score 0.511 +- 0.031 (95%, paired)  LLR -0.46 (bounds +-2.94)
+[1023s] 100 pairs (200 games): score 0.510 +- 0.028 (95%, paired)  LLR -0.71 (bounds +-2.94)
+[1142s] 109 pairs (220 games): score 0.505 +- 0.027 (95%, paired)  LLR -1.43 (bounds +-2.94)
+[1253s] 119 pairs (240 games): score 0.504 +- 0.025 (95%, paired)  LLR -1.68 (bounds +-2.94)
+[1372s] 130 pairs (260 games): score 0.508 +- 0.024 (95%, paired)  LLR -1.46 (bounds +-2.94)
+[1486s] 139 pairs (280 games): score 0.511 +- 0.023 (95%, paired)  LLR -1.18 (bounds +-2.94)
+[1601s] 150 pairs (300 games): score 0.507 +- 0.023 (95%, paired)  LLR -1.96 (bounds +-2.94)
+[1733s] 159 pairs (320 games): score 0.506 +- 0.021 (95%, paired)  LLR -2.18 (bounds +-2.94)
+[1872s] 169 pairs (340 games): score 0.506 +- 0.020 (95%, paired)  LLR -2.43 (bounds +-2.94)
+[1969s] 179 pairs (360 games): score 0.506 +- 0.019 (95%, paired)  LLR -2.68 (bounds +-2.94)
+[2079s] 189 pairs (380 games): score 0.505 +- 0.018 (95%, paired)  LLR -2.93 (bounds +-2.94)
+190 pairs (381 games): score 0.505 +- 0.018 (95%, paired)  LLR -2.96 (bounds +-2.94)
+  CPU per decision: A 4.41s, B 4.18s, ratio 1.06
+  a: make 91.3%, fouls 3.2%, safeties 40 of 2189 shots, scratches 56
+  b: make 91.2%, fouls 3.2%, safeties 40 of 2184 shots, scratches 54
+  A stats: {'decisions': 0, 'switched': 0, 'endgame': 0}
+  SPRT: H0 accepted; 2080s wall

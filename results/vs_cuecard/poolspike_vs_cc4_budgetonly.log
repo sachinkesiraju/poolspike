@@ -1,0 +1,5 @@
+poolspike vs cc:4: 200 games, score 0.520 +- 0.069 (95%)
+  poolspike: make 89.7% (945/1054), fouls 3.3% of 1171 shots, scratches 32, invalid 0, agent errors 0
+  cc:4: make 91.0% (934/1026), fouls 4.3% of 1152 shots, scratches 41, invalid 0, agent errors 0
+  ends: {'A wins: 8 legally pocketed': 101, 'A loses: 8 legally pocketed': 96, 'A wins: 8 early': 2, 'A wins: scratch on the 8': 1}
+  noise ours, rules ours, seeds [604000, 604100), 0 failed games, 954s wall

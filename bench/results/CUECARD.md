@@ -72,7 +72,7 @@ Code: `ref/cuecard.py` (tables: `ref/cc_data/<noise>_tables.npz`, break:
 | table grid / samples | 9x8x8x(4 or 5), 48 | dev; [PP]: 30^4, s = 200 |
 | break score | keep + 0.2 spread | dev; [AIM]: keep weighted over spread |
 | ball-in-hand grid, k, c | 10 x 20, 4, 24 | dev; [PP 3.4.2] gives the method, not values |
-| level-1 / level-2 budget | ~330 / ~250 simulations | dev (about r19's CPU per decision) |
+| level-1 / level-2 budget | ~330 / ~250 simulations | dev (about Poolspike's CPU per decision) |
 
 ## Deviations from the papers
 

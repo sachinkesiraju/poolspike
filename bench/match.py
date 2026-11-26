@@ -9,7 +9,7 @@ the rack and the dice is shared. Prints A's score (win = 1, draw = 0.5) with a
 95% normal half-width, both sides' make rate (called pots made / attempted),
 foul rate per shot, and how games ended.
 
-Agent specs (reference_agents.py): ev | lite | greedy | cc[:mult] | poolspike (alias r19) | n5:<weights.npz>
+Agent specs (reference_agents.py): ev | lite | greedy | cc[:mult] | poolspike | poolspike-deep (alias rla_late) | n5:<weights.npz>
 | py:<path/to/file.py>:<factory>. A factory is called as factory(seed=int,
 seat=str) and returns either a callable turn -> action or an object with
 .act(turn). See example_agent.py for the turn/action format.

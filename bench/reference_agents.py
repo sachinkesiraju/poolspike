@@ -10,9 +10,11 @@ reproduces the published numbers game for game.
   ev            noise-aware expected-value search (pool8/policy.py, POLICY.md)
   cc[:mult]     CueCard rebuild (ref/cuecard.py); mult scales its search budget
   poolspike     Poolspike: hand-written candidates + noisy simulations, judged
-                by a value net trained by 19 rounds of self-play (ref/poolspike_player.py,
-                weights ref/nets/poolspike.npz). `r19`, its name in the logs,
-                is an alias.
+                by a value net trained by 19 rounds of self-play
+                (ref/poolspike_player.py, weights ref/nets/poolspike.npz).
+  poolspike-deep  Poolspike plus a finalist search (stroke refinement, late-rack
+                two-shot lookahead; ref/poolspike_search.py), about 4x the CPU.
+                `rla_late`, its name in the logs, is an alias.
   n5:<npz>      any ShotNet5 weights file
   py:<file.py>:<factory>   your agent: factory(seed=int, seat=str)
 """
@@ -38,10 +40,14 @@ def make(spec: str, seed: int, seat: str, role: str = "a"):
     if spec == "cc" or spec.startswith("cc:"):
         import cuecard
         return cuecard.CueCard(spec, seed=s).act
-    if spec in ("poolspike", "r19") or spec.startswith("n5:"):
+    if spec in ("poolspike", "poolspike-deep", "rla_late") or spec.startswith("n5:"):
         import poolspike_player
         from rl import encode as E
-        me = poolspike_player.ShotNet5(spec[3:] if spec.startswith("n5:") else POOLSPIKE, seed=s)
+        if spec in ("poolspike-deep", "rla_late"):
+            import poolspike_search
+            me = poolspike_search.PoolspikeDeep(POOLSPIKE, seed=s)
+        else:
+            me = poolspike_player.ShotNet5(spec[3:] if spec.startswith("n5:") else POOLSPIKE, seed=s)
 
         def act(turn):
             # record the judge's win chance for the position before each shot
@@ -56,6 +62,7 @@ def make(spec: str, seed: int, seat: str, role: str = "a"):
                     pass
             return me.act(turn)
         act.judge = []
+        act.stats = getattr(me, "stats", None)
         return act
     if spec.startswith("py:"):
         path, _, name = spec[3:].rpartition(":")

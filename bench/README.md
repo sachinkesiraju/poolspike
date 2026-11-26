@@ -19,6 +19,7 @@ pool8/                simulator + rules + game engine (vendored, pinned)
   PROTOCOL.md           wire format of turns and actions
 ref/                  reference agents (vendored)
   poolspike_player.py   Poolspike player (with shotnet.py, vnet.py support code)
+  poolspike_search.py   Poolspike-deep: Poolspike plus a finalist search
   judge_net.py          Poolspike's learned judge
   nets/poolspike.npz    Poolspike weights
   cuecard.py, cc_data/  CueCard rebuild and its tables
@@ -127,7 +128,7 @@ intervals overlap are not a proven difference. One game takes one core;
 `--workers` games run in parallel.
 
 Agent specs: `greedy`, `lite`, `ev`, `cc` / `cc:<budget multiplier>`,
-`poolspike` (alias `r19`), `n5:<weights.npz>`, `py:<file.py>:<factory>`.
+`poolspike`, `poolspike-deep` (alias `rla_late`), `n5:<weights.npz>`, `py:<file.py>:<factory>`.
 
 ## Reference agents
 
@@ -136,12 +137,16 @@ Agent specs: `greedy`, `lite`, `ev`, `cc` / `cc:<budget multiplier>`,
   search. Direct/bank/kick/combo lanes, a speed x draw/follow x english sweep,
   per-stroke aim solving, sampled outcomes under the table noise, an analytic
   leave evaluator and race model. `lite` is its budget preset.
-* **poolspike** (alias `r19`, its name in the logs; `ref/poolspike_player.py` +
-  `ref/nets/poolspike.npz`): hand-written candidate generation and fine aim, 24 noisy simulations per shortlisted shot, choosing
-  the best mean win chance under a learned position judge (VNet2, trained by
-  19 rounds of self-play). It is a hybrid, not a pure net: the judge's inputs
-  include EV's analytic evaluator and it still searches with simulations.
-  About 2 s per decision on one core.
+* **poolspike** (`ref/poolspike_player.py` + `ref/nets/poolspike.npz`):
+  Hand-written candidate generation and fine aim, 24 noisy
+  simulations per shortlisted shot, choosing the best mean win chance under a
+  learned position judge (VNet2, trained by 19 rounds of self-play). It is a
+  hybrid, not a pure net: the judge's inputs include EV's analytic evaluator
+  and it still searches with simulations. About 3-4 s per decision on one core.
+* **poolspike-deep** (alias `rla_late`, its name in the logs;
+  `ref/poolspike_search.py`): `poolspike` plus stroke refinement of the chosen
+  shot on common noise draws and, with 4 or fewer of its balls left, a two-shot
+  lookahead on the top 3 shots. About 3.9x `poolspike`'s CPU per decision.
 * **cc** (`ref/cuecard.py`): a rebuild of CueCard, the 2008 Computer Olympiad
   champion (Archibald et al., IJCAI 2009), on this simulator: shot
   generation from PickPocket-style tables, Monte Carlo variants with 25 noisy
