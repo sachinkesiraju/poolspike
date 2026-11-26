@@ -20,17 +20,16 @@ chance for each option. Full game, with sound:
 [media/poolspike_vs_ev.mp4](media/poolspike_vs_ev.mp4). Render your own with
 [`viz/`](viz/README.md).*
 
-| Match (95% intervals; a win counts 1) | Games | Poolspike score | Poolspike's CPU per shot vs the opponent's |
-|---|---|---|---|
-| vs CueCard rebuild | 1,000 | **0.583 ± 0.031** | 1.5× |
-| vs CueCard rebuild with 4× its search budget | 1,000 | **0.550 ± 0.031** | 0.4× |
-| vs CueCard rebuild, ICGA 2008 tournament noise | 400 | **0.590 ± 0.048** | about 1.5× |
-| vs EV (our strongest hand-written agent) | 1,000 | **0.595 ± 0.030** | 0.3× |
+| Match (95% intervals; a win counts 1) | Games | Poolspike score |
+|---|---|---|
+| vs CueCard rebuild | 1,000 | **0.583 ± 0.031** |
+| vs CueCard rebuild with 4× its search budget | 1,000 | **0.550 ± 0.031** |
+| vs CueCard rebuild, ICGA 2008 tournament noise | 400 | **0.590 ± 0.048** |
+| vs EV (our strongest hand-written agent) | 1,000 | **0.595 ± 0.030** |
 
 About 3–4 CPU-seconds per shot on one core, well inside the ICGA
-tournaments' 10-minute-per-game clock. CPU ratios come from 20 games against
-each opponent, with both players' CPU measured in the same games, under our
-noise model ([bench/results/RESULTS.md](bench/results/RESULTS.md)).
+tournaments' 10-minute-per-game clock. CPU against each opponent is measured
+in [bench/results/RESULTS.md](bench/results/RESULTS.md).
 
 ## Background
 
