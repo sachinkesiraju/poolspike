@@ -1,6 +1,6 @@
-"""Poolspike: the self-play judge with a sharper search on top.
+"""Poolspike-deep: Poolspike plus a search on its finalists, for when compute is cheap.
 
-The one-ply player (poolspike_player.ShotNet5, `oneply`) builds candidate
+Poolspike (poolspike_player.ShotNet5) builds candidate
 shots, plays each NOISY0 times with noise, shortlists TOP and plays those NOISY1
 more, then takes the best mean win chance. This player keeps all of that and the
 same judge, and adds two steps on the finalists:
@@ -16,7 +16,7 @@ same judge, and adds two steps on the finalists:
    search, then the pick is re-scored on fresh draws, so the max over noisy
    estimates does not bias it upward.
 
-About 3.9x the one-ply player's CPU per decision, measured in the same games.
+About 3.9x Poolspike's CPU per decision, measured in the same games.
 `rla_late` in the logs (its development name).
 """
 import math
@@ -112,7 +112,7 @@ def best_next(st, me, opp, guess, tag):
     return float(v.mean())
 
 
-class Poolspike(N5.ShotNet5):
+class PoolspikeDeep(N5.ShotNet5):
     def __init__(self, w, seed=0):
         super().__init__(w, seed=seed)
         self.seed = seed

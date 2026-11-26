@@ -1,26 +1,5 @@
-[223s] 10 pairs (20 games): score 0.700 +- 0.248 (95%, paired)  LLR +0.41 (bounds +-2.94)
-[436s] 19 pairs (40 games): score 0.658 +- 0.179 (95%, paired)  LLR +0.59 (bounds +-2.94)
-[650s] 29 pairs (60 games): score 0.655 +- 0.136 (95%, paired)  LLR +0.89 (bounds +-2.94)
-[845s] 38 pairs (80 games): score 0.605 +- 0.127 (95%, paired)  LLR +0.76 (bounds +-2.94)
-[1023s] 49 pairs (100 games): score 0.612 +- 0.107 (95%, paired)  LLR +1.02 (bounds +-2.94)
-[1235s] 59 pairs (120 games): score 0.644 +- 0.097 (95%, paired)  LLR +1.61 (bounds +-2.94)
-[1443s] 70 pairs (140 games): score 0.657 +- 0.088 (95%, paired)  LLR +2.12 (bounds +-2.94)
-[1643s] 79 pairs (160 games): score 0.665 +- 0.080 (95%, paired)  LLR +2.53 (bounds +-2.94)
-[1863s] 89 pairs (180 games): score 0.680 +- 0.073 (95%, paired)  LLR +3.19 (bounds +-2.94)
-[2076s] 98 pairs (200 games): score 0.684 +- 0.070 (95%, paired)  LLR +3.64 (bounds +-2.94)
-[2287s] 108 pairs (220 games): score 0.676 +- 0.066 (95%, paired)  LLR +3.85 (bounds +-2.94)
-[2489s] 119 pairs (240 games): score 0.676 +- 0.063 (95%, paired)  LLR +4.30 (bounds +-2.94)
-[2670s] 129 pairs (260 games): score 0.671 +- 0.061 (95%, paired)  LLR +4.51 (bounds +-2.94)
-[2870s] 140 pairs (280 games): score 0.668 +- 0.058 (95%, paired)  LLR +4.84 (bounds +-2.94)
-[3119s] 148 pairs (300 games): score 0.682 +- 0.056 (95%, paired)  LLR +5.67 (bounds +-2.94)
-[3325s] 160 pairs (320 games): score 0.672 +- 0.055 (95%, paired)  LLR +5.74 (bounds +-2.94)
-[3585s] 169 pairs (340 games): score 0.680 +- 0.053 (95%, paired)  LLR +6.43 (bounds +-2.94)
-[3799s] 179 pairs (360 games): score 0.690 +- 0.051 (95%, paired)  LLR +7.26 (bounds +-2.94)
-[3985s] 188 pairs (380 games): score 0.689 +- 0.049 (95%, paired)  LLR +7.60 (bounds +-2.94)
-[4198s] 200 pairs (400 games): score 0.688 +- 0.047 (95%, paired)  LLR +8.07 (bounds +-2.94)
-200 pairs (400 games): score 0.688 +- 0.047 (95%, paired)  LLR +8.07 (bounds +-2.94)
-  CPU per decision: A 12.35s, B 2.48s, ratio 4.99
-  a: make 95.1%, fouls 1.8%, safeties 28 of 2547 shots, scratches 38
-  b: make 90.3%, fouls 4.2%, safeties 50 of 1885 shots, scratches 56
-  A stats: {'decisions': 2347, 'switched': 612, 'endgame': 1553}
-  SPRT: not run / undecided; 4198s wall
+poolspike vs cc: 400 games, score 0.590 +- 0.048 (95%)
+  poolspike: make 93.4% (2075/2221), fouls 2.6% of 2464 shots, scratches 53, invalid 0, agent errors 0
+  cc: make 90.6% (1694/1869), fouls 3.7% of 2122 shots, scratches 57, invalid 0, agent errors 0
+  ends: {'A wins: 8 legally pocketed': 235, 'A loses: 8 legally pocketed': 161, 'A loses: scratch on the 8': 1, 'A wins: 8 early': 1, 'A loses: 8 in the wrong pocket': 1, 'A loses: 8 early': 1}
+  noise icga2008, rules icga, seeds [602000, 602200), 0 failed games, 1683s wall

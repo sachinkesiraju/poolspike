@@ -1,5 +1,0 @@
-oneply vs ev: 300 games, score 0.600 +- 0.055 (95%)
-  oneply: make 92.7% (1529/1650), fouls 2.4% of 1823 shots, scratches 36, invalid 0, agent errors 0
-  ev: make 91.1% (1294/1421), fouls 3.0% of 1621 shots, scratches 40, invalid 0, agent errors 0
-  ends: {'A wins: 8 legally pocketed': 171, 'A loses: 8 legally pocketed': 118, 'A wins: 8 early': 5, 'A wins: scratch on the 8': 3, 'A wins: 8 in the wrong pocket': 1, 'A loses: scratch on the 8': 1, 'A loses: 8 in the wrong pocket': 1}
-  noise icga2008, rules icga, seeds [602000, 602150), 0 failed games, 2771s wall

@@ -10,11 +10,11 @@ reproduces the published numbers game for game.
   ev            noise-aware expected-value search (pool8/policy.py, POLICY.md)
   cc[:mult]     CueCard rebuild (ref/cuecard.py); mult scales its search budget
   poolspike     Poolspike: hand-written candidates + noisy simulations, judged
-                by a value net trained by 19 rounds of self-play (weights
-                ref/nets/poolspike.npz), with stroke refinement and a late-rack
-                two-shot lookahead on top (ref/poolspike_search.py). `rla_late`,
-                its name in the logs, is an alias.
-  oneply        the same judge with the one-ply search only (ref/poolspike_player.py)
+                by a value net trained by 19 rounds of self-play
+                (ref/poolspike_player.py, weights ref/nets/poolspike.npz).
+  poolspike-deep  Poolspike plus a finalist search (stroke refinement, late-rack
+                two-shot lookahead; ref/poolspike_search.py), about 4x the CPU.
+                `rla_late`, its name in the logs, is an alias.
   n5:<npz>      any ShotNet5 weights file
   py:<file.py>:<factory>   your agent: factory(seed=int, seat=str)
 """
@@ -40,12 +40,12 @@ def make(spec: str, seed: int, seat: str, role: str = "a"):
     if spec == "cc" or spec.startswith("cc:"):
         import cuecard
         return cuecard.CueCard(spec, seed=s).act
-    if spec in ("poolspike", "rla_late", "oneply") or spec.startswith("n5:"):
+    if spec in ("poolspike", "poolspike-deep", "rla_late") or spec.startswith("n5:"):
         import poolspike_player
         from rl import encode as E
-        if spec in ("poolspike", "rla_late"):
+        if spec in ("poolspike-deep", "rla_late"):
             import poolspike_search
-            me = poolspike_search.Poolspike(POOLSPIKE, seed=s)
+            me = poolspike_search.PoolspikeDeep(POOLSPIKE, seed=s)
         else:
             me = poolspike_player.ShotNet5(spec[3:] if spec.startswith("n5:") else POOLSPIKE, seed=s)
 

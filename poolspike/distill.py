@@ -1,20 +1,20 @@
-"""Student nets distilled from the one-ply player.
+"""Student nets distilled from Poolspike.
 
   python distill.py build DATADIR OUT.npz [B]     features + labels from teacher logs (B = with 1 noiseless sim)
   python distill.py train DATA.npz OUT.npz         fit the student
   python distill.py report DATA.npz NET.npz        holdout accuracy
 
-Student = candidate scorer. Candidates come from cheap geometry (the one-ply player's own lane
+Student = candidate scorer. Candidates come from cheap geometry (Poolspike's own lane
 order and ball-in-hand spots, its 13/5-stroke grids); aim = ghost-ball angle +
 a learned correction (no window search). Per candidate it predicts:
-  feas  : does this stroke pot at all (the one-ply player's window search found a window)
-  dphi  : aim correction, degrees (the one-ply player's window centre / refined aim - ghost-ball angle)
-  s1    : the one-ply player's first-stage score for it
-  pick  : the one-ply player's final choice (listwise softmax within a decision)
+  feas  : does this stroke pot at all (Poolspike's window search found a window)
+  dphi  : aim correction, degrees (Poolspike's window centre / refined aim - ghost-ball angle)
+  s1    : Poolspike's first-stage score for it
+  pick  : Poolspike's final choice (listwise softmax within a decision)
 Modes at play (DS_MODE):
   A  no simulation at all
-  B  one noiseless simulation per candidate adds leave features (the one-ply player's base_features)
-  C  B's top DS_K candidates are checked the one-ply way (window, refine, 28 noisy sims, the one-ply player's scorer)
+  B  one noiseless simulation per candidate adds leave features (Poolspike's base_features)
+  C  B's top DS_K candidates are checked Poolspike's way (window, refine, 28 noisy sims, Poolspike's scorer)
 """
 import glob
 import gzip
@@ -416,7 +416,7 @@ class Student:
         return w
 
     def check(self, turn, cands, phis, top, ctx):
-        """the one-ply player's second stage on the student's shortlist: exact window, refine, 28 noisy sims, teacher scorer."""
+        """Poolspike's second stage on the student's shortlist: exact window, refine, 28 noisy sims, teacher scorer."""
         opts = []
         for i in top:
             st, b, pk, gi, bih, C, q, rank = cands[i]

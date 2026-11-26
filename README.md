@@ -1,16 +1,16 @@
 # Poolspike
 
-**A self-play 8-ball player that beats the strongest hand-tuned search.**
+**A self-play 8-ball player that beats the 2008 champion's search, even when
+the champion gets more compute.**
 
 Poolspike plays every candidate shot many times in a physics simulator with
 execution noise. It scores each resulting table with a 2,354-parameter
-win-probability network trained by self-play, then sharpens its best shots:
-it fine-tunes the stroke, and late in the rack it looks one shot further
-ahead. Every tournament champion since 2005 searched shots under noise and
-scored the results with a hand-written formula. Poolspike keeps the search and
-learns the evaluation, and sets a new state of the art over hand-tuned search:
-it beats our rebuild of CueCard, the 2008 tournament champion, and our
-strongest hand-written agent, EV.
+win-probability network trained by self-play. Every tournament champion since
+2005 searched shots under noise and scored the results with a hand-written
+formula. Poolspike keeps the search and learns the evaluation. It beats our
+rebuild of CueCard, the 2008 tournament champion, including when CueCard gets
+2.5× Poolspike's CPU, and it beats our strongest hand-written agent, EV, on
+about a third of EV's CPU.
 
 ![Poolspike against EV: before each shot it shows its shortlist, with each option's make rate over 24 noisy simulations and its learned win chance, then plays the shot](media/poolspike.gif)
 
@@ -18,18 +18,19 @@ strongest hand-written agent, EV.
 shows its shortlist: make rate over 24 noisy simulations and the judge's win
 chance for each option. Full game, with sound:
 [media/poolspike_vs_ev.mp4](media/poolspike_vs_ev.mp4). Render your own with
-[`viz/`](viz/README.md). This game was played by the one-ply search
-(`oneply`): Poolspike without the finalist search described below.*
+[`viz/`](viz/README.md).*
 
-| Match (95% intervals; a win counts 1) | Games | Poolspike score |
-|---|---|---|
-| vs CueCard rebuild | 1,000 | **0.666 ± 0.030** |
-| vs CueCard rebuild, ICGA 2008 tournament noise | 400 | **0.688 ± 0.047** |
-| vs EV (our strongest hand-written agent) | 1,000 | **0.662 ± 0.030** |
+| Match (95% intervals; a win counts 1) | Games | Poolspike score | Poolspike's CPU per shot vs the opponent's |
+|---|---|---|---|
+| vs CueCard rebuild | 1,000 | **0.583 ± 0.031** | 1.5× |
+| vs CueCard rebuild with 4× its search budget | 1,000 | **0.550 ± 0.031** | 0.4× |
+| vs CueCard rebuild, ICGA 2008 tournament noise | 400 | **0.590 ± 0.048** | about 1.5× |
+| vs EV (our strongest hand-written agent) | 1,000 | **0.595 ± 0.030** | 0.3× |
 
-Extra compute does not explain the result: Poolspike without its finalist
-search, given the same CPU, scores 0.441 ± 0.029 against it (see
-[What each part is worth](#what-each-part-is-worth)).
+About 3–4 CPU-seconds per shot on one core, well inside the ICGA
+tournaments' 10-minute-per-game clock. CPU ratios come from 20 games against
+each opponent, with both players' CPU measured in the same games, under our
+noise model ([bench/results/RESULTS.md](bench/results/RESULTS.md)).
 
 ## Background
 
@@ -51,7 +52,7 @@ scores 0.940 against a greedy player and ties our EV agent (0.500 ± 0.057).
 
 ## How it works
 
-Four ideas carry the method.
+Three ideas carry the method.
 
 1. **Noise-aware sampling.** Poolspike builds candidates from 5 aim lanes ×
    14 strokes per pot, plus banks, kicks, combinations and ball-in-hand
@@ -66,35 +67,8 @@ Four ideas carry the method.
 3. **Self-play with gating.** The judge is trained only on games Poolspike
    plays, mostly against itself. A refit judge must beat the current champion
    head to head before it replaces it, as in AlphaZero's loop.
-4. **A sharper search on the finalists.** After the shortlist, Poolspike
-   fine-tunes the stroke of its best shot. With four or fewer of its balls
-   left, it instead refines its top 3 and scores each by its best next shot
-   from the tables where the ball drops. There is no policy network and no
-   tree search: the lookahead is one extra shot, late in the rack. Without
-   this step, the player is the one-ply search (`oneply`).
 
-### The search
-
-![Poolspike's decision pipeline: candidates, noisy sampling and a shortlist, then either stroke refinement of the best shot or, with four or fewer balls left, a two-shot lookahead on the top three](media/search.svg)
-
-- **Stroke refinement.** Around the best shot, Poolspike tries 6 variants:
-  speed ±0.6 m/s, follow or draw ±0.3 and side spin ±0.25 cue-ball radii, each
-  re-aimed. Every variant is played on the same 24 noise draws, so their
-  difference is not luck. A variant replaces the stroke only if its paired
-  gain beats 2 standard errors. This targets the one-ply search's measured
-  weakness: when a much heavier search (7× CPU) disagreed with it, 47 of 63
-  times it chose the same ball with a different stroke.
-- **Late-rack lookahead.** With four or fewer of its balls left (the 8 counts
-  as one), Poolspike refines its top 3 shots and plays each 32 times with
-  noise. Where the ball drops, the judge's value of the table is replaced by
-  the value of Poolspike's best next pot from it: a small search, with the
-  pick re-scored on fresh noise draws so that taking the best of noisy
-  estimates does not inflate it. In 150 self-play games of the one-ply search
-  (1,798 shots), 71% of the win chance a player lost through its own shots
-  was lost with one to four of its balls left.
-- **Code:** `poolspike/poolspike_search.py`, on top of the one-ply player in
-  `poolspike/poolspike_player.py`. It reproduces the logged games move for
-  move.
+There is no policy network and no tree search.
 
 ### The judge (VNet2)
 
@@ -140,39 +114,71 @@ hours on a 10-core Mac mini. Only that final champion was then tested on
 
 The judge is the larger lever:
 
-| One-ply search, scored by | vs EV |
+| Poolspike's search, scored by | vs EV |
 |---|---|
 | EV's hand-written evaluation | 0.535 ± 0.069 (200 games) |
 | the learned judge | 0.595 ± 0.030 (1,000 games) |
 
-More of the same one-ply search does not help. With 2.3× the CPU (8 aim lanes,
-shortlist 12, 8 + 80 noisy plays) it scored 0.533 against the standard
+More of the same search does not help. With 2.3× the CPU (8 aim lanes,
+shortlist 12, 8 + 80 noisy plays) Poolspike scored 0.533 against its standard
 budget and 0.597 ± 0.030 against EV; with 7× (12 lanes, shortlist 24, 16 + 200
 plays) it scored 0.540 ± 0.056 against the standard budget (300 games each).
-Spending the compute on the finalists does help:
 
-| Poolspike vs | Games | Poolspike score |
-|---|---|---|
-| the one-ply search with the same CPU (10 lanes, shortlist 16, 8 + 120 noisy plays; CPU ratio 1.03) | 1,000 | 0.559 ± 0.029 |
+Nor does trading search breadth for stroke refinement (below) at a fixed
+budget: a cut-down search plus refinement, at 1.30× CueCard's CPU, scored
+0.545 ± 0.049 against CueCard over 400 games, no better than Poolspike on the
+same racks (−0.020 ± 0.056).
 
-Against the CueCard rebuild, the one-ply search alone scored 0.583 ± 0.031
-on the same 1,000 games where Poolspike scores 0.666; paired by rack,
-Poolspike gains +0.083 ± 0.032.
+## More compute: Poolspike-deep
 
-How the search was chosen: each change was first played against the one-ply
-search in a
-sequential test (0.50 vs 0.55, 5% error rates), and a pass had to repeat on
+When CPU is cheap, a search on the finalists adds strength. Poolspike-deep
+(`poolspike-deep`) is Poolspike plus two steps after the shortlist:
+
+![Poolspike-deep's decision pipeline: candidates, noisy sampling and a shortlist, then either stroke refinement of the best shot or, with four or fewer balls left, a two-shot lookahead on the top three](media/search.svg)
+
+- **Stroke refinement.** Around the best shot, it tries 6 variants: speed
+  ±0.6 m/s, follow or draw ±0.3 and side spin ±0.25 cue-ball radii, each
+  re-aimed. Every variant is played on the same 24 noise draws, so their
+  difference is not luck. A variant replaces the stroke only if its paired
+  gain beats 2 standard errors. This targets Poolspike's measured weakness:
+  when a much heavier search (7× CPU) disagreed with it, 47 of 63 times it
+  chose the same ball with a different stroke.
+- **Late-rack lookahead.** With four or fewer of its balls left (the 8 counts
+  as one), it refines its top 3 shots and plays each 32 times with noise.
+  Where the ball drops, the judge's value of the table is replaced by the
+  value of the best next pot from it: a small search, with the pick re-scored
+  on fresh noise draws so that taking the best of noisy estimates does not
+  inflate it. In 150 Poolspike self-play games (1,798 shots), 71% of the win
+  chance a player lost through its own shots was lost with one to four of its
+  balls left.
+
+| Poolspike-deep vs | Games | Score | Its CPU per shot vs the opponent's |
+|---|---|---|---|
+| CueCard rebuild | 1,000 | 0.666 ± 0.030 | 5.3× |
+| CueCard rebuild, ICGA 2008 noise | 400 | 0.688 ± 0.047 | 5.0× |
+| CueCard rebuild with 5× its search budget | 400 | 0.590 ± 0.049 | 1.17× |
+| EV | 1,000 | 0.662 ± 0.030 | 1.2× |
+| Poolspike given the same CPU (10 lanes, shortlist 16, 8 + 120 noisy plays) | 1,000 | 0.559 ± 0.029 | 1.03× |
+
+Against CueCard given equal compute it scores 0.590 ± 0.049, about what
+Poolspike scores against CueCard at its standard budget (0.583): most of the
+extra margin is compute. Against EV, which already spends about as much CPU,
+it scores 0.662. About 13 CPU-seconds per shot. Code:
+`poolspike/poolspike_search.py`; in the logs it is `rla_late`.
+
+How the search was chosen: each change was first played against Poolspike in
+a sequential test (0.50 vs 0.55, 5% error rates), and a pass had to repeat on
 fresh seeds. Stroke refinement alone passed twice (0.554, then 0.549; 1.3×
 CPU). Lookahead on every shot without refinement was not shown to help (0.534
 ± 0.035 after 683 games, 6.2× CPU; stopped undecided). Refinement plus
-lookahead late in the rack, which is Poolspike, passed twice (0.565, then
-0.629; 4.0× CPU). Rejected at equal CPU: an ensemble of 5 judges (0.488), a
-judge 4× wider (0.477), more ball-in-hand placements (0.505) and deliberate
-safeties (0.495). Two further changes failed when played against Poolspike:
-lookahead after likely misses (0.489 ± 0.046, 279 games) and a second, finer
-round of stroke refinement (0.519 ± 0.041, 419 games; stopped undecided). A sequential test
+lookahead late in the rack passed twice (0.565, then 0.629; 4.0× CPU).
+Rejected at equal CPU: an ensemble of 5 judges (0.488), a judge 4× wider
+(0.477), more ball-in-hand placements (0.505) and deliberate safeties (0.495).
+Two further changes failed against Poolspike-deep: lookahead after likely
+misses (0.489 ± 0.046, 279 games) and a second, finer round of stroke
+refinement (0.519 ± 0.041, 419 games; stopped undecided). A sequential test
 stops when the score looks clear, which inflates it, so the scores in the
-tables above all come from fixed-length runs. Logs: [`results/search/`](results/search/).
+table come from fixed-length runs. Logs: [`results/search/`](results/search/).
 
 ## Repository
 
@@ -180,14 +186,14 @@ tables above all come from fixed-length runs. Logs: [`results/search/`](results/
 bench/                  pool8-bench: self-contained benchmark. Start here (bench/README.md).
   match.py                seeded match runner, both seats per seed, 95% intervals
   example_agent.py        turn/action interface with an example agent to copy
-  reference_agents.py     reference agents: greedy, ev, cc (CueCard rebuild), poolspike, oneply
+  reference_agents.py     reference agents: greedy, ev, cc (CueCard rebuild), poolspike, poolspike-deep
   pool8/                  simulator wrapper, rules, noise, game engine (pooltool 0.6.0)
   ref/                    vendored copies of the agent code, weights and CueCard tables
   results/                RESULTS.md, CUECARD.md and per-game logs
   tools/                  results_table.py, judge_calibration.py
 poolspike/              the player and its training
-  poolspike_search.py     the player: stroke refinement and late-rack lookahead
-  poolspike_player.py     the one-ply search underneath: candidates, noisy sampling, shortlist
+  poolspike_player.py     the player: candidates, noisy sampling, shortlist, judge
+  poolspike_search.py     Poolspike-deep: stroke refinement and late-rack lookahead
   judge_net.py            the judge, plus data generation, fitting and evaluation
   train_selfplay.py       self-play training loop
   cuecard.py              CueCard rebuild (cc_data/: its precomputed tables)
@@ -196,16 +202,16 @@ poolspike/              the player and its training
 sim/                    game engine, rules, physics wrapper and EV policy
 results/                logs behind the reported numbers
   training/               20 rounds: loop.log, gate and EV-check games
-  vs_cuecard/             one-ply search and CueCard matches, both noise models
-  vs_ev/                  1,000-game one-ply search vs EV
-  search/                 how the search was chosen: every candidate change, the equal-CPU test
+  vs_cuecard/             Poolspike and CueCard matches, both noise models
+  vs_ev/                  1,000-game Poolspike vs EV
+  search/                 how Poolspike-deep's search was chosen, and the equal-CPU tests
   runout/                 run-out rate from 200 start positions
 viz/                    render any game as a video with table sounds (viz/README.md)
 media/                  the game above (GIF, and full video with sound), search and judge diagrams
 ```
 
 Paths inside the logs in `results/` use development names (`wsp/`, `nets6/`,
-`runs/v6`, `vnet2.py`, `shotnet5.py`); in game logs Poolspike is `rla_late`.
+`runs/v6`, `vnet2.py`, `shotnet5.py`); in game logs Poolspike-deep is `rla_late`.
 
 ## Quick start
 
@@ -220,7 +226,7 @@ cd bench
 ```
 
 That plays 20 games of Poolspike against the CueCard rebuild (`cc`). The
-headline match is `--seeds 600000 600500 --workers 9`, about 3 hours on a
+headline match is `--seeds 600000 600500 --workers 9`, about 80 minutes on a
 10-core Mac mini. Add `--noise icga2008 --rules icga` for tournament
 conditions. To score your own agent, pass `py:path/to/file.py:factory`; see
 `example_agent.py`.
@@ -237,11 +243,11 @@ then run from `poolspike/`:
 
 - **Paired games.** Every seed is played twice, so each player breaks once.
   The two games share the rack and the noise stream, so neither side gets an
-  easier rack. In practice this barely narrows the intervals: ±0.030 paired
-  vs ±0.029 per game in the 1,000-game CueCard match.
+  easier rack. In practice this barely narrows the intervals: ±0.031 paired
+  and per game in the 1,000-game CueCard match.
 - **Held-out seeds.** Reported matches use seeds 600000–604599, plus
-  110000–110499 against EV. The judge trained on seeds below 50000, the search
-  was chosen on seeds 810000–880499, and CueCard was debugged on
+  110000–110499 against EV. The judge trained on seeds below 50000,
+  Poolspike-deep's search was chosen on seeds 810000–880499, and CueCard was debugged on
   603000–603214. No reported game was seen during development.
 - **No access to the real noise.** The game draws its noise from its own
   random generator. Poolspike and the reference agents never read it; they
@@ -259,10 +265,9 @@ then run from `poolspike/`:
   evaluation and learns a correction.
 - **Some tournament rules are missing:** the four-balls-to-a-rail break, the
   8-ball as a legal first contact on an open table, and the game clock.
-- **Compute.** Poolspike uses 5.3× the CueCard rebuild's CPU per shot, and
-  the rebuild was not given more search.
-- **Search tuned in self-play.** The search changes were selected in games
-  against the one-ply search, not against CueCard or EV.
+- **Compute is measured, not capped.** No clock is enforced; CPU ratios are
+  measured in the same games, on one shared machine, so they vary by a few
+  tens of percent between runs.
 - **Small ablations.** The hand-written-evaluation comparison used only 200
   games, and the 2.3× and 7× search tests 300 each.
 

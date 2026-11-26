@@ -1,0 +1,6 @@
+[279s] 10 pairs (20 games): score 0.700 +- 0.206 (95%, paired)  LLR +0.41 (bounds +-2.94)
+10 pairs (20 games): score 0.700 +- 0.206 (95%, paired)  LLR +0.41 (bounds +-2.94)
+  CPU per decision: A 3.09s, B 10.87s, ratio 0.28
+  a: make 90.6%, fouls 2.0%, safeties 3 of 151 shots, scratches 2
+  b: make 87.5%, fouls 2.9%, safeties 7 of 137 shots, scratches 2
+  SPRT: not run / undecided; 279s wall

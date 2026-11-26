@@ -1,12 +1,12 @@
-### positions (oneply self-play, seeds 160000-160120) 01:02
+### positions (poolspike self-play, seeds 160000-160120) 01:02
 383 positions (270 visit starts) [441s]
 ### run-out rate from visit starts 01:10
-oneply      run-out 44.6% (357/800), lost on the visit 1.6% | 0-2 left 61% (n 64) | 3-4 left 53% (n 64) | 5-7 left 42% (n 672)
+poolspike      run-out 44.6% (357/800), lost on the visit 1.6% | 0-2 left 61% (n 64) | 3-4 left 53% (n 64) | 5-7 left 42% (n 672)
 ev       run-out 38.8% (310/800), lost on the visit 1.0% | 0-2 left 61% (n 64) | 3-4 left 55% (n 64) | 5-7 left 35% (n 672)
 perfect  run-out 93.5% (187/200), lost on the visit 0.5% | 0-2 left 88% (n 16) | 3-4 left 100% (n 16) | 5-7 left 93% (n 168)
 [4540s]
-### ratings: oneply vs lite, ev vs lite 02:25
-oneply vs lite: 300 games, score 0.710 +- 0.051 [929s]
+### ratings: poolspike vs lite, ev vs lite 02:25
+poolspike vs lite: 300 games, score 0.710 +- 0.051 [929s]
 ev vs lite: 300 games, score 0.653 +- 0.054 [2349s]
 ### regret vs heavy search 03:20
 choices for 180 positions [562s]; base 3.6s, heavy 26.6s per decision
