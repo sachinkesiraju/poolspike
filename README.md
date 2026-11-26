@@ -1,7 +1,7 @@
 # Poolspike
 
-**A self-play 8-ball player that beats the 2008 champion's search, even when
-the champion gets more compute.**
+**A self-play 8-ball player that beats a rebuild of the 2008 tournament
+champion, even when the rebuild gets more compute.**
 
 Poolspike plays every candidate shot many times in a physics simulator with
 execution noise. It scores each resulting table with a 2,354-parameter
@@ -173,9 +173,9 @@ CPU). Lookahead on every shot without refinement was not shown to help (0.534
 lookahead late in the rack passed twice (0.565, then 0.629; 4.0× CPU).
 Rejected at equal CPU: an ensemble of 5 judges (0.488), a judge 4× wider
 (0.477), more ball-in-hand placements (0.505) and deliberate safeties (0.495).
-Two further changes failed against Poolspike-deep: lookahead after likely
-misses (0.489 ± 0.046, 279 games) and a second, finer round of stroke
-refinement (0.519 ± 0.041, 419 games; stopped undecided). A sequential test
+Two further changes showed no gain against Poolspike-deep: lookahead after
+likely misses (0.489 ± 0.046, 279 games; rejected) and a second, finer round
+of stroke refinement (0.519 ± 0.041, 419 games; stopped undecided). A sequential test
 stops when the score looks clear, which inflates it, so the scores in the
 table come from fixed-length runs. Logs: [`results/search/`](results/search/).
 
@@ -245,9 +245,11 @@ then run from `poolspike/`:
   easier rack. In practice this barely narrows the intervals: ±0.031 paired
   and per game in the 1,000-game CueCard match.
 - **Held-out seeds.** Reported matches use seeds 600000–604599, plus
-  110000–110499 against EV. The judge trained on seeds below 50000,
-  Poolspike-deep's search was chosen on seeds 810000–880499, and CueCard was debugged on
-  603000–603214. No reported game was seen during development.
+  110000–110499 against EV (CPU timings: 606000–606009). The judge trained
+  on seeds below 50000. Poolspike-deep's search was chosen on seeds
+  810000–862069, and its fixed-length checks against Poolspike used fresh
+  seeds 870000–880499. CueCard was debugged on 603000–603214. No reported
+  game was seen during development.
 - **No access to the real noise.** The game draws its noise from its own
   random generator. Poolspike and the reference agents never read it; they
   plan with their own random numbers.
